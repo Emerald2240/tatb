@@ -1,4 +1,3 @@
-
 <?php
 require_once "config/connect.php";
 require_once "functions/functions.php";
@@ -22,7 +21,7 @@ if (!isset($_SESSION['log'])) {
 </head>
 
 <body id="page-top">
- 
+
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -52,6 +51,9 @@ if (!isset($_SESSION['log'])) {
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Posts</h1>
+                        <a href="newpost.php" class="btn btn-primary btn-user">
+                            <i class="fa fa-plus fa-fw"></i>
+                        </a>
                     </div>
 
                     <!-- Content Row -->
@@ -68,42 +70,32 @@ if (!isset($_SESSION['log'])) {
                                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th>Course Code</th>
-                                                    <th>Course Title</th>
-                                                    <th>Faculty</th>
-                                                    <th>Level</th>
-                                                    <th>Credit</th>
-                                                    <th>Semester</th>
+                                                    <th>Code</th>
+                                                    <th>Title</th>
+                                                    <th>Post</th>
+                                                    <th>image</th>
+                                                    <th>Created</th>
+                                                    <th>Updated</th>
+                                                    <th>Min Read</th>
                                                     <th>Edit</th>
-                                                    <th>New Exam</th>
                                                     <th>Delete</th>
                                                 </tr>
                                             </thead>
                                             <tfoot>
                                                 <tr>
-                                                    <th>Course Code</th>
-                                                    <th>Course Title</th>
-                                                    <th>Faculty</th>
-                                                    <th>Level</th>
+                                                    <th>Code</th>
+                                                    <th>Title</th>
+                                                    <th>Post</th>
+                                                    <th>image</th>
+                                                    <th>Created</th>
+                                                    <th>Updated</th>
+                                                    <th>Min Read</th>
                                                     <th>Edit</th>
-                                                    <th>Credit</th>
-                                                    <th>Semester</th>
-                                                    <th>New Exam</th>
                                                     <th>Delete</th>
                                                 </tr>
                                             </tfoot>
                                             <tbody>
-                                                <tr>
-                                                    <td>CHE485</td>
-                                                    <td><a href="course_detail.php?id=63&coursename=Chemical Technology"> CHEMICAL TECHNOLOGY</a></td>
-                                                    <td>Enigneering</td>
-                                                    <td>400</td>
-                                                    <td>2</td>
-                                                    <td>1</td>
-                                                    <td><a href="edit_course.php?id=63&coursename=Chemical Technology&creditload=2&faculty=Enigneering&level=4&semester=1&code=CHE485&edit=1"><i class="fa fa-edit"></i></a></td>
-                                                    <td><a href="new_exam.php?id=63&coursename=Chemical Technology"><i class="fa fa-plus"></i></a></td>
-                                                    <td><a href="delete_course.php?id=63"><i class="fa fa-trash"></i></a></td>
-                                                </tr>
+                                               <?php loadPosts();?>
                                             </tbody>
                                         </table>
 
@@ -143,18 +135,18 @@ if (!isset($_SESSION['log'])) {
     require_once('includes/logout_modal.php');
     ?>
 
-   
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
- <!-- DataTable plugins -->
+    <!-- DataTable plugins -->
     <!-- <script src="js/jquery.js"></script> -->
     <script src="vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <script src="js/demo/datatables-demo.js"></script>
-    
+
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 

@@ -7,7 +7,19 @@ if (!isset($_SESSION['log'])) {
     //exit();
 }
 
-processNewPost($_POST);
+if (isset($_GET['edit'])) {
+    $_SESSION['editpost'] = true;
+    $_SESSION['editId'] = $_GET['id'];
+}
+
+if (isset( $_SESSION['editpost'])) {
+ $datamissing = processNewPost($_POST, $_SESSION['editId']);
+//  print_r($datamissing);
+//  die;
+} else {
+    $datamissing = processNewPost($_POST);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,14 +66,22 @@ processNewPost($_POST);
                     <main>
 
                         <div class="centered p-4">
-                            <?php showDataMissing(processNewPost($_POST)); ?>
+                            <?php
+                               showDataMissing($datamissing);
+                          ?>
 
                             <!--  "functions/test.php"-->
                             <form action=<?= $_SERVER['PHP_SELF'] ?> method="post" enctype="multipart/form-data">
 
                                 <div class="mb-5">
                                     <label for="title">Blog Title</label>
-                                    <input type="text" name="title" id="title" class="container" required>
+                                    <input type="text" name="title" id="title" class="container" required <?php
+                                                                                                            if (isset($_GET['edit']) && $_GET['edit'] == 1) {
+                                                                                                                echo 'value="';
+                                                                                                                echo $_GET['title'];
+                                                                                                                echo '"';
+                                                                                                            }
+                                                                                                            ?>>
                                 </div>
 
 
@@ -69,7 +89,11 @@ processNewPost($_POST);
                                     <label for="bp">Blog Post</label>
                                     <!-- <div id="editor" class="edit"></div>
         <input type="text" name="rbp" id="editor" class="invisible"> -->
-                                    <textarea name="bp" id="editor"></textarea>
+                                    <textarea name="bp" id="editor">
+                                        <?php if (isset($_GET['edit']) && $_GET['edit'] == 1) {
+                                            loadBlogPost($_GET['id']);
+                                        } ?>
+                                    </textarea>
 
                                     <div class="mb-5 mt-5">
                                         <label for="bi">Blog Image</label>
@@ -78,7 +102,13 @@ processNewPost($_POST);
 
                                     <div class="mb-5">
                                         <label for="tag">Blog Post Tags(Place semicolon after each one)</label>
-                                        <input type="text" name="tag" id="tag" class="container" required>
+                                        <input type="text" name="tag" id="tag" class="container" <?php
+                                                                                                    if (isset($_GET['edit']) && $_GET['edit'] == 1) {
+                                                                                                        echo 'value="';
+                                                                                                        echo $_GET['tags'];
+                                                                                                        echo '"';
+                                                                                                    }
+                                                                                                    ?>>
                                     </div>
 
                                     <!-- <a href="" onclick="showMissingItems()" class="btn btn-danger btn-user btn-block invisible">Process</a> -->
