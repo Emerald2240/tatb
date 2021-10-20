@@ -1,11 +1,13 @@
 <?php
-//require_once "config/connect.php";
+require_once "config/connect.php";
 require_once "functions/functions.php";
 
 if (!isset($_SESSION['log'])) {
     //header('location:login.php');
     //exit();
 }
+
+processNewPost($_POST);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,12 +54,14 @@ if (!isset($_SESSION['log'])) {
                     <main>
 
                         <div class="centered p-4">
-<?php processNewPost($_POST); ?>
-                            <form action="functions/test.php" method="post" enctype="multipart/form-data">
+                            <?php showDataMissing(processNewPost($_POST)); ?>
+
+                            <!--  "functions/test.php"-->
+                            <form action=<?= $_SERVER['PHP_SELF'] ?> method="post" enctype="multipart/form-data">
 
                                 <div class="mb-5">
                                     <label for="title">Blog Title</label>
-                                    <input type="text" name="title" id="title" class="container">
+                                    <input type="text" name="title" id="title" class="container" required>
                                 </div>
 
 
@@ -67,20 +71,19 @@ if (!isset($_SESSION['log'])) {
         <input type="text" name="rbp" id="editor" class="invisible"> -->
                                     <textarea name="bp" id="editor"></textarea>
 
-                                <div class="mb-5 mt-5">
-                                    <label for="bi">Blog Image</label>
-                                    <input type="file" name="bi" id="image" class="container">
-                                </div>
+                                    <div class="mb-5 mt-5">
+                                        <label for="bi">Blog Image</label>
+                                        <input type="file" name="bi" id="image" class="container" required>
+                                    </div>
 
-                                <div class="mb-5">
-                                    <label for="tag">Blog Post Tags</label>
-                                    <input type="text" name="tag" id="tag" class="container">
-                                </div>
+                                    <div class="mb-5">
+                                        <label for="tag">Blog Post Tags(Place semicolon after each one)</label>
+                                        <input type="text" name="tag" id="tag" class="container" required>
+                                    </div>
 
-
-                                <!-- <a href="" onclick="validateNewExamForm()" class="btn btn-danger btn-user btn-block invisible">Process</a> -->
-                                <button type="submit" class="btn btn-primary btn-user btn-block" id="submit" name="submit">Submit</button>
-                                <!-- <input type="submit" name="Submit" class="btn btn-primary btn-user btn-block"> -->
+                                    <!-- <a href="" onclick="showMissingItems()" class="btn btn-danger btn-user btn-block invisible">Process</a> -->
+                                    <button type="submit" class="btn btn-primary btn-user btn-block" id="submit" name="submit">Submit</button>
+                                    <!-- <input type="submit" name="Submit" class="btn btn-primary btn-user btn-block"> -->
                             </form>
 
                         </div>
@@ -147,6 +150,7 @@ if (!isset($_SESSION['log'])) {
                 console.error(err.stack);
             });
     </script>
+    <script src="functions/functions.js"></script>
 
 </body>
 
