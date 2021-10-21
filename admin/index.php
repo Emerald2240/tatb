@@ -3,8 +3,7 @@ require_once "config/connect.php";
 require_once "functions/functions.php";
 
 if (!isset($_SESSION['log'])) {
-    //header('location:login.php');
-    //exit();
+    gotoPage("login.php");
 }
 ?>
 <!DOCTYPE html>

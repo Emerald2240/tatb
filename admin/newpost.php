@@ -3,13 +3,13 @@ require_once "config/connect.php";
 require_once "functions/functions.php";
 
 if (!isset($_SESSION['log'])) {
-    //header('location:login.php');
-    //exit();
+    gotoPage("login.php");
 }
 
 if (isset($_GET['edit'])) {
     $_SESSION['editpost'] = true;
     $_SESSION['editId'] = $_GET['id'];
+    $_SESSION['editImage'] = $_GET['image'];
 }
 
 if (isset( $_SESSION['editpost'])) {

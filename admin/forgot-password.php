@@ -1,3 +1,13 @@
+<?php
+require_once "config/connect.php";
+require_once "functions/functions.php";
+
+if (!isset($_SESSION['log'])) {
+    gotoPage("index.php");
+}
+
+$datamissing =  processLogin($_POST);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
