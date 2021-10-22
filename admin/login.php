@@ -52,12 +52,16 @@ $datamissing =  processLogin($_POST);
                                     <?php
                                     showDataMissing($datamissing);
                                     ?>
-                                    <form class="user" action=<?= $_SERVER['PHP_SELF'] ?>  method="post">
+                                    <form class="user" action=<?= $_SERVER['PHP_SELF'] ?> method="post">
                                         <div class="form-group">
-                                            <input type="email" value="<?php if (isset($_COOKIE['mem_mail'])) { echo $_COOKIE['mem_mail'];} ?>" name="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                                            <input type="email" value="<?php if (isset($_COOKIE['mem_mail'])) {
+                                                                            echo $_COOKIE['mem_mail'];
+                                                                        } ?>" name="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
                                         </div>
                                         <div class="form-group">
-                                            <input name="password" value="<?php if (isset($_COOKIE['mem_pass'])) { echo $_COOKIE['mem_pass'];} ?>"  type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                                            <input name="password" value="<?php if (isset($_COOKIE['mem_pass'])) {
+                                                                                echo $_COOKIE['mem_pass'];
+                                                                            } ?>" type="password" class="form-control form-control-user" id="exampleInputPassword"      placeholder="Password">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
