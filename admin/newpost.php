@@ -12,10 +12,10 @@ if (isset($_GET['edit'])) {
     $_SESSION['editImage'] = $_GET['image'];
 }
 
-if (isset( $_SESSION['editpost'])) {
- $datamissing = processNewPost($_POST, $_SESSION['editId']);
-//  print_r($datamissing);
-//  die;
+if (isset($_SESSION['editpost'])) {
+    $datamissing = processNewPost($_POST, $_SESSION['editId']);
+    //  print_r($datamissing);
+    //  die;
 } else {
     $datamissing = processNewPost($_POST);
 }
@@ -67,8 +67,8 @@ if (isset( $_SESSION['editpost'])) {
 
                         <div class="centered p-4">
                             <?php
-                               showDataMissing($datamissing);
-                          ?>
+                            showDataMissing($datamissing);
+                            ?>
 
                             <!--  "functions/test.php"-->
                             <form action=<?= $_SERVER['PHP_SELF'] ?> method="post" enctype="multipart/form-data">
