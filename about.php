@@ -3,108 +3,97 @@ require_once "admin/config/connect.php";
 require_once "admin/functions/functions.php";
 ?>
 <!DOCTYPE html>
-<html lang="en"> 
-<head>
-    <title>Bootstrap 4 Blog Template For Developers</title>
-    
-    <!-- Meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Blog Template">
-    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
-    <link rel="shortcut icon" href="favicon.ico"> 
-    
-    <!-- FontAwesome JS-->
-    <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
-    
-    <!-- Theme CSS -->  
-    <link id="theme-style" rel="stylesheet" href="assets/css/theme-1.css">
-    
+<html lang="en">
 
-</head> 
+<head>
+	<title>TA Tech Blog</title>
+
+	<!-- Meta -->
+	<meta name="description" content="Blog Template">
+	<meta name="author" content="Xiaoying Riley at 3rd Wave Media">
+
+	<?php
+	require_once('includes/head.php');
+	?>
+</head>
+
 
 <body>
-    
-<header class="header text-center">	    
-		<?php 
+
+	<header class="header text-center">
+		<?php
 		require_once('includes/sideprofilebar.php')
 		?>
 	</header>
-	
-    <div class="main-wrapper">
-	    	    
-	    <article class="about-section py-5">
-		    <div class="container">
-			    <h2 class="title mb-3">About Me</h2>
-			    
-			    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. </p>
-			    <figure><img class="img-fluid" src="assets/images/about-me.jpg" alt="image"></figure>
-			    <h5 class="mt-5">About The Blog</h5>
-			    <p>Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus.</p>
-			    <h5 class="mt-5">My Skills and Experiences</h5>
-			    <p>Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.</p>
-			    <h5 class="mt-5">Side Projects</h5>
-			    <p>Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.</p>
-			    
-			    <figure><a href="https://made4dev.com"><img class="img-fluid" src="assets/images/promo-banner.jpg" alt="image"></a></figure>
-		    </div>
-	    </article><!--//about-section-->
-	    
-	    <section class="cta-section theme-bg-light py-5">
-		    <div class="container text-center">
-			    <h2 class="heading">Newsletter</h2>
-			    <div class="intro">Welcome to my blog. Subscribe and get my latest blog post in your inbox.</div>
-			    <form class="signup-form form-inline justify-content-center pt-3">
-                    <div class="form-group">
-                        <label class="sr-only" for="semail">Your email</label>
-                        <input type="email" id="semail" name="semail1" class="form-control mr-md-1 semail" placeholder="Enter email">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Subscribe</button>
-                </form>
-		    </div><!--//container-->
-	    </section>
-	    
-	    <footer class="footer text-center py-2 theme-bg-dark">
-		   
-	        <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can buy the commercial license via our website: themes.3rdwavemedia.com */-->
-            <small class="copyright">Designed with <i class="fas fa-heart" style="color: #fb866a;"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
-		   
-	    </footer>
-    
-    </div><!--//main-wrapper-->
-    
 
-    <!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->  
-    <div id="config-panel" class="config-panel d-none d-lg-block">
-        <div class="panel-inner">
-            <a id="config-trigger" class="config-trigger config-panel-hide text-center" href="#"><i class="fas fa-cog fa-spin mx-auto" data-fa-transform="down-6" ></i></a>
-            <h5 class="panel-title">Choose Colour</h5>
-            <ul id="color-options" class="list-inline mb-0">
-                <li class="theme-1 active list-inline-item"><a data-style="assets/css/theme-1.css" href="#"></a></li>
-                <li class="theme-2  list-inline-item"><a data-style="assets/css/theme-2.css" href="#"></a></li>
-                <li class="theme-3  list-inline-item"><a data-style="assets/css/theme-3.css" href="#"></a></li>
-                <li class="theme-4  list-inline-item"><a data-style="assets/css/theme-4.css" href="#"></a></li>
-                <li class="theme-5  list-inline-item"><a data-style="assets/css/theme-5.css" href="#"></a></li>
-                <li class="theme-6  list-inline-item"><a data-style="assets/css/theme-6.css" href="#"></a></li>
-                <li class="theme-7  list-inline-item"><a data-style="assets/css/theme-7.css" href="#"></a></li>
-                <li class="theme-8  list-inline-item"><a data-style="assets/css/theme-8.css" href="#"></a></li>
-            </ul>
-            <a id="config-close" class="close" href="#"><i class="fa fa-times-circle"></i></a>
-        </div><!--//panel-inner-->
-    </div><!--//configure-panel-->
+	<div class="main-wrapper">
 
-    
-       
-    <!-- Javascript -->          
-    <script src="assets/plugins/jquery-3.3.1.min.js"></script>
-    <script src="assets/plugins/popper.min.js"></script> 
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
-    
-    <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
-    <script src="assets/js/demo/style-switcher.js"></script>     
-    
+		<article class="about-section py-5">
+			<div class="container">
+				<h2 class="title mb-3">About Me</h2>
+
+				<p>I'm a guy trying to live my best life through a career in programming. I started using computers
+					since i was 8 and since then have been very passionate about it</p>
+				<p>I love playing video games, sports, Watching action movies, Petting animals, the great outdoors...</p>
+				<p>I studied Computer Engineering at Enugu State University of Science and Technology(ESUT). I started proffessional programming in 2018 and currently have experience in over 7 programming languages, frameworks and API's....</p>
+				<figure><img class="img-fluid" src="assets/images/about-me.jpg" alt="image"></figure>
+				<h5 class="mt-5">About The Blog</h5>
+				<p>The blog was made from the need for tech and tech concepts to be understood by all, not just a select few. I do my best to break down tech topics as a way to educate others and learn as well.</p>
+				<h5 class="mt-5">My Skills and Experiences</h5>
+				<p> I'm a fullstack developer and freelancer. Since i started learning to code seriously in 2018 i've built multiple desktop apps, android apps, websites, blogs and hybrids projects for numerous clients.<br>
+					I've always had a knack for writing and english but it took until recently for me to start using it for the service of others. I currently own a blog and do some writing on my social media every now and then. I tutor students on web development and computer engineering as well in my state for a fee.<br>
+					I am also a student of Computer Engineering ESUT, a University based in Nigeria. At the time of writing this i'm in my final year.<br>
+					I'm also a computer hardware specialist, having lots of knowledge on the different parts of the computer and replacing/fixing them if necessary with extensive knowledge in software installation and troubleshooting as well.
+
+					<h5 class="mt-5">Side Projects</h5>
+					<a target="_blank"  href="https://Techac.net/apps">TA List</a>
+					<p>An android app used for creating lists.</P>
+					<!-- <p><strong>Java | Android Studio</strong></P> -->
+
+					<a target="_blank" href="https://Techac.net/tapq">TA Past Questions, ESUT</a>
+					<p>Records past exam questions and incorporates database functions with them, so as to make it easier for students to prepare.</p>
+					<!-- <p><strong>PHP | HTML5 | CSS3 | JavaScript | Bootstrap | JQuery | MySQL</strong></p> -->
+
+					<a target="_blank" href="https://techac.net/tatb">Tech Blog</a>
+					<p>I discuss the most useful topics relating to technology. Our aim is to make tech and tech concepts easy for everyone to understand.</p>
+					<!-- <p><strong>PHP | HTML5 | CSS3 | JavaScript | Bootstrap | JQuery | MySQL</strong></p> -->
+
+					<a target="_blank" href="https://techac.net/tats">TA Tech Store</a>
+					<p>An online store for tech products and gadgets at very cheap prices (in progress).</p>
+					<!-- <p><strong>PHP | HTML5 | CSS3 | JavaScript | Bootstrap | JQuery | MySQL</strong></p> -->
+					<p>For more projects checkout my: <a target="_blank" href="https://techac.net/p">Portfolio<i class="fab fa-github-alt fa-fw"></i></a></p>
+
+
+					<!-- <figure><a href="https://made4dev.com"><img class="img-fluid" src="assets/images/promo-banner.jpg" alt="image"></a></figure> -->
+			</div>
+		</article>
+		<!--//about-section-->
+
+		<section class="cta-section theme-bg-light py-5">
+
+			<?php
+			require_once('includes/topbar.php')
+			?>
+		</section>
+
+		<footer class="footer text-center py-2 theme-bg-dark">
+			<?php
+			require_once('includes/footer.php');
+			?>
+		</footer>
+
+	</div>
+	<!--//main-wrapper-->
+
+	<!-- Javascript -->
+	<?php
+	require_once('includes/js.php');
+	?>
+
+	<?php
+	//require_once('includes/styleswitch.php')
+	?>
 
 </body>
-</html> 
 
+</html>

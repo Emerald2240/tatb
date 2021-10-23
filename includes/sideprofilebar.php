@@ -12,11 +12,11 @@
 					
 					<div class="bio mb-3">Hi, my name is Orji Michael Chukwuebuka. I'm a Computer Engineer and Software Developer.<br>My Job is quite simply to make the world a better place by solving problems.<br><a href="about.php">Find out more about me</a></div><!--//bio-->
 					<ul class="social-list list-inline py-3 mx-auto">
-			            <li class="list-inline-item"><a href="#"><i class="fab fa-twitter fa-fw"></i></a></li>
-			            <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-			            <li class="list-inline-item"><a href="#"><i class="fab fa-github-alt fa-fw"></i></a></li>
-			            <li class="list-inline-item"><a href="#"><i class="fab fa-stack-overflow fa-fw"></i></a></li>
-			            <li class="list-inline-item"><a href="#"><i class="fab fa-codepen fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a target="_blank" href="https://twitter.com/Michelson_Java"><i class="fab fa-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a target="_blank" href="https://www.linkedin.com/in/michael-orji-1274b1220/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a target="_blank" href="github.com/emerald2240"><i class="fab fa-github-alt fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a target="_blank" href="#"><i class="fab fa-stack-overflow fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a target="_blank" href="#"><i class="fab fa-codepen fa-fw"></i></a></li>
 			        </ul><!--//social-list-->
 			        <hr> 
 				</div><!--//profile-section-->
@@ -26,15 +26,15 @@
 					    <a class="nav-link" href="index.php"><i class="fas fa-home fa-fw mr-2"></i>Home <span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
-					    <a class="nav-link" href="blog-post.php"><i class="fas fa-bookmark fa-fw mr-2"></i>Blog Post</a>
+					    <a class="nav-link" href="blog-list.php"><i class="fas fa-bookmark fa-fw mr-2"></i>Posts</a>
 					</li>
-					<li class="nav-item">
+					<!-- <li class="nav-item">
 					    <a class="nav-link" href="about.php"><i class="fas fa-user fa-fw mr-2"></i>About Me</a>
-					</li>
+					</li> -->
 				</ul>
 				
 				<div class="my-2 my-md-3">
-				    <a class="btn btn-primary" href="https://themes.3rdwavemedia.com/" target="_blank">Get in Touch</a>
+				    <a class="btn btn-primary" href="https://techac.net" target="_blank">Get in Touch</a>
 				</div>
 			</div>
 		</nav>
