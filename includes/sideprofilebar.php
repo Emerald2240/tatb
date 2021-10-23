@@ -22,10 +22,18 @@
 				</div><!--//profile-section-->
 				
 				<ul class="navbar-nav flex-column text-left">
-					<li class="nav-item active">
+					<li class="nav-item <?php
+                            if (strpos($_SERVER["PHP_SELF"], "index.php")) {
+                                echo 'active';
+                            }
+                            ?>">
 					    <a class="nav-link" href="index.php"><i class="fas fa-home fa-fw mr-2"></i>Home <span class="sr-only">(current)</span></a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item <?php
+                            if (strpos($_SERVER["PHP_SELF"], "blog-list.php")) {
+                                echo 'active';
+                            }
+                            ?>">
 					    <a class="nav-link" href="blog-list.php"><i class="fas fa-bookmark fa-fw mr-2"></i>Posts</a>
 					</li>
 					<!-- <li class="nav-item">
@@ -34,7 +42,7 @@
 				</ul>
 				
 				<div class="my-2 my-md-3">
-				    <a class="btn btn-primary" href="https://techac.net" target="_blank">Get in Touch</a>
+				    <a class="btn btn-primary" href="https://techac.net/contact.php" target="_blank">Get in Touch</a>
 				</div>
 			</div>
 		</nav>
