@@ -43,7 +43,7 @@ function processNewPost($formstream, $editId = null)
         if (empty($bp)) {
             $datamissing['bp'] = "Missing blog post";
         } else {
-            $bp = htmlentities($bp, ENT_QUOTES);
+            $bp; // = htmlentities($bp, ENT_QUOTES);
         }
 
         if (empty($tag)) {
@@ -126,7 +126,8 @@ function AddPost($title, $bp, $tag, $imagename, $minread)
         //$_SESSION['postJustAdded'] = 1;
         gotoPage("posts.php");
     } else {
-        //echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+    
+        echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
     }
     mysqli_close($db);
 }
@@ -189,14 +190,14 @@ function loadPosts()
 
 
             //echo '"> ';
-            $string = substr($row['title'], 0, 25) . "...";
+            $string = substr($row['title'], 0, 25);
             echo ucwords(strtolower($string));
             //echo '</a>';
             echo '</td>';
 
             //post
             echo '<td>';
-            $string = substr($row['blog_post'], 0, 25) . "...";
+            $string = substr($row['blog_post'], 0, 25);
             echo $string;
             echo '</td>';
 
@@ -258,6 +259,7 @@ function loadPosts()
     //}
 }
 
+//frontend and backend
 function loadBlogPost($id)
 {
     global $db;
@@ -459,8 +461,8 @@ function processLogin($formstream)
             //This is the line of code for saving cookies AKA remember me
 
             // if (isset($remember)) {
-                if ($remember == true) {
-                    //die;
+            if ($remember == true) {
+                //die;
                 setcookie("mem_mail",  $_SESSION['email'], time() + (10 * 365 * 24 * 60 * 60));
                 setcookie("mem_pass", $password, time() + (10 * 365 * 24 * 60 * 60));
                 setcookie("mem_sele",  $_SESSION['admin_id'], time() + (10 * 365 * 24 * 60 * 60));
@@ -491,6 +493,92 @@ function processLogin($formstream)
             //   </div>';
             $datamissing['login_error'] = 'Your email or password are incorrect.';
             return $datamissing;
+        }
+    }
+}
+
+
+//////////////////////////////////////////////FRONTEND//////////////////////////////////////////////
+
+function loadBlogPosts()
+{
+    //This loads up all the posts available and fills their links/options with the required items so they can be worked on and used to get more data on that particular course
+    global $db;
+    // $user = $_SESSION['username'];
+    // if (!empty($user)) {
+    $query = "SELECT id, 	title, 	blog_post, 	imagename, 	datecreated, 	dateupdated, 	minread, 	tags  FROM posts ORDER BY `id` DESC ";
+    $response = @mysqli_query($db, $query);
+    if ($response) {
+        while ($row = mysqli_fetch_array($response)) {
+            $checker = $row['id'];
+
+            echo '<div class="item mb-5">';
+            echo '<div class="media">';
+            echo '<img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="admin/blog_images/';
+
+            //blog image
+            echo $row['imagename'];
+
+            echo '" alt="';
+
+            //blog image alt text
+            echo 'image';
+
+            echo '">';
+            echo '<div class="media-body">';
+            echo '<h3 class="title mb-1"><a href="post.php?id=';
+            echo $row['id'];
+            echo '">';
+
+            //blog title
+            //$string = substr($row['title'], 0, 25) . "...";
+            echo ucwords(strtolower($row['title']));
+            //echo 'A Guide to Becoming a Full-Stack Developer';
+
+            echo '</a></h3>';
+            echo '<div class="meta mb-1"><span class="date">';
+
+            //blog published time span
+            echo 'Published 3 months ago';
+
+            echo '</span><span class="time">';
+
+            //how long it takes to read in minutes
+            echo '3 min read';
+
+            echo '</span><span class="comment"><a href="#">';
+
+            //How many comments
+            echo '26 comments';
+
+            echo '</a></span></div>';
+            echo '<div class="intro">';
+
+            //blog post intro
+            $string2 = substr($row['blog_post'], 0, 225);
+            //echo $row['blog_post'];
+            echo $string2;
+            // echo 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies...';
+
+            echo '</div>';
+            echo '<a class="more-link" href="';
+
+            //blog post link
+            echo 'post.php?id=';
+            //blog post id
+            echo $row['id'];
+
+            echo '">Read more &rarr;</a>';
+            echo '</div>';
+            echo '<!--//media-body-->';
+
+            echo '</div>';
+            echo '<!--//media-->';
+            echo '</div>';
+            echo '<!--//item-->';
+        }
+        if (empty($checker)) {
+            echo 'No Posts Added Yet';
         }
     }
 }

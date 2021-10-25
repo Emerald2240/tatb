@@ -46,7 +46,7 @@ require_once "admin/functions/functions.php";
 					I'm also a computer hardware specialist, having lots of knowledge on the different parts of the computer and replacing/fixing them if necessary with extensive knowledge in software installation and troubleshooting as well.
 
 					<h5 class="mt-5">Side Projects</h5>
-					<a target="_blank"  href="https://Techac.net/apps">TA List</a>
+					<a target="_blank" href="https://Techac.net/apps">TA List</a>
 					<p>An android app used for creating lists.</P>
 					<!-- <p><strong>Java | Android Studio</strong></P> -->
 

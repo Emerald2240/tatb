@@ -9,4 +9,5 @@
             <button type="submit" class="btn btn-primary">Subscribe</button>
         </form>
     </div>
+</div>
     <!--//container-->

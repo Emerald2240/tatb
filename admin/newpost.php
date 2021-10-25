@@ -28,6 +28,12 @@ if (isset($_SESSION['editpost'])) {
     <?php
     require_once('includes/head.php');
     ?>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <title>Create New Post</title>
+    <script src="vendor/ckeditor/ckeditor.js"></script>
+
 </head>
 
 <body id="page-top">
@@ -69,8 +75,8 @@ if (isset($_SESSION['editpost'])) {
                             <?php
                             showDataMissing($datamissing);
                             ?>
-
-                            <!--  "functions/test.php"-->
+                            <!--  -->
+                            <!-- "functions/test.php" -->
                             <form action=<?= $_SERVER['PHP_SELF'] ?> method="post" enctype="multipart/form-data">
 
                                 <div class="mb-5">
@@ -94,6 +100,14 @@ if (isset($_SESSION['editpost'])) {
                                             loadBlogPost($_GET['id']);
                                         } ?>
                                     </textarea>
+                                    <script>
+                                        CKEDITOR.replace('editor', {
+                                           // filebrowserBrowseUrl: 'browse.php?type=Files',
+                                            //filebrowserUploadUrl: 'upload.php?type=Files'
+                                        });
+                                        // var editor = CKEDITOR.replace('ckfinder');
+                                        // CKFINDER.setupCKEDITOR(editor);
+                                    </script>
 
                                     <div class="mb-5 mt-5">
                                         <label for="bi">Blog Image</label>
@@ -150,25 +164,22 @@ if (isset($_SESSION['editpost'])) {
     ?>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
+    <!-- Page level plugins
     <script src="vendor/chart.js/Chart.min.js"></script>
 
-    <!-- Page level custom scripts -->
+    Page level custom scripts
     <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script> -->
 
     <!-- ck editor includes -->
-    <script src="vendor/ckeditor5_bdc/ckeditor.js"></script>
-    <script>
+    <!-- <script>
         ClassicEditor
             .create(document.querySelector('#editor'), {
                 //toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
@@ -179,9 +190,7 @@ if (isset($_SESSION['editpost'])) {
             .catch(err => {
                 console.error(err.stack);
             });
-    </script>
+    </script> -->
     <script src="functions/functions.js"></script>
 
 </body>
-
-</html>
