@@ -17,12 +17,12 @@ if (!isset($_FILES['upload']['tmp_name'])) {
     $uniqueimagename = time() . uniqid(rand());
 
     //stores the target folder name in a variable
-    $target = "blog_images/" . $uniqueimagename;
-    chmod('blog_images', 0777);
+    $target = "../assets/images" . $uniqueimagename;
+    chmod('../assets/images', 0777);
 
     //if the folder doesn't exist, create it.
-    if (!is_dir("blog_images")) {
-        mkdir("blog_images", 0755);
+    if (!is_dir("../assets/images")) {
+        mkdir("../assets/images", 0755);
     }
 
     // $filename = "";

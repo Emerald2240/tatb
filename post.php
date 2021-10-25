@@ -31,19 +31,16 @@ require_once "admin/functions/functions.php";
 		<article class="blog-post px-3 py-5 p-md-5">
 			<div class="container">
 				<header class="blog-post-header">
-					<h2 class="title mb-2">Why Every Developer Should Have A Blog</h2>
-					<div class="meta mb-3"><span class="date">Published 3 months ago</span><span class="time">5 min read</span><span class="comment"><a href="#">4 comments</a></span></div>
+					<h2 class="title mb-2"><?= strtoupper(str_replace("-", " ", $_GET['title'])) ?></h2>
+					<div class="meta mb-3"><span class="date"><?= LoadBlogPostTimeDetails(str_replace("_", " ", $_GET['cr'])) ?></span><i class="far fa-calendar-alt fa-fw"></i></div>
 				</header>
 
 				<!-- blog post -->
 				<div class="blog-post-body">
-					<figure class="blog-banner">
-						<a href="https://made4dev.com"><img class="img-fluid" src="assets/images/blog/blog-post-banner.jpg" alt="image"></a>
-						<figcaption class="mt-2 text-center image-caption">Image Credit: <a href="https://made4dev.com?ref=devblog" target="_blank">made4dev.com (Premium Programming T-shirts)</a></figcaption>
-					</figure>
-<?php 
-loadBlogPost($_GET['id']);
-?>
+				
+					<?php
+					loadBlogPost($_GET['id']);
+					?>
 				</div>
 				<!-- blogpost end -->
 
@@ -97,16 +94,7 @@ loadBlogPost($_GET['id']);
 			<!--//container-->
 		</article>
 
-		<section class="promo-section theme-bg-light py-5 text-center">
-			<div class="container">
-				<h2 class="title">Promo Section Heading</h2>
-				<p>You can use this section to promote your side projects etc. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. </p>
-				<figure class="promo-figure">
-					<a href="https://made4dev.com" target="_blank"><img class="img-fluid" src="assets/images/promo-banner.jpg" alt="image"></a>
-				</figure>
-			</div>
-			<!--//container-->
-		</section>
+		
 		<!--//promo-section-->
 
 		<footer class="footer text-center py-2 theme-bg-dark">

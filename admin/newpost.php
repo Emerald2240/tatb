@@ -102,7 +102,7 @@ if (isset($_SESSION['editpost'])) {
                                     </textarea>
                                     <script>
                                         CKEDITOR.replace('editor', {
-                                           // filebrowserBrowseUrl: 'browse.php?type=Files',
+                                            //filebrowserBrowseUrl: 'browse.php?type=Files',
                                             //filebrowserUploadUrl: 'upload.php?type=Files'
                                         });
                                         // var editor = CKEDITOR.replace('ckfinder');

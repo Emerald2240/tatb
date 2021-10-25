@@ -126,7 +126,7 @@ function AddPost($title, $bp, $tag, $imagename, $minread)
         //$_SESSION['postJustAdded'] = 1;
         gotoPage("posts.php");
     } else {
-    
+
         echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
     }
     mysqli_close($db);
@@ -253,7 +253,7 @@ function loadPosts()
             echo '</tr>';
         }
         if (empty($checker)) {
-            echo 'No Posts Added Yet';
+            echo '<p class="text-center">No Posts Added Yet</p>';
         }
     }
     //}
@@ -265,10 +265,23 @@ function loadBlogPost($id)
     global $db;
     // $user = $_SESSION['username'];
     // if (!empty($user)) {
-    $query = "SELECT blog_post FROM posts  WHERE posts.id = '$id' ";
+    $query = "SELECT title, imagename, blog_post FROM posts  WHERE posts.id = '$id' ";
     $response = @mysqli_query($db, $query);
     if ($response) {
         while ($row = mysqli_fetch_array($response)) {
+            //blog images===========================
+            echo '<figure class="blog-banner">';
+            //echo '<a href="';
+            //echo 'https://made4dev.com';
+            echo '<img class="img-fluid" src="admin/blog_images/';
+            echo $row['imagename'];
+            echo '" alt="';
+            echo $row['title'] . ' image';
+            echo '">';
+            echo '</a>';
+            echo '<figcaption class="mt-2 text-center image-caption">Image Credit: <a href="https://gettyimages.com?ref=devblog" target="_blank">gettyImages</a></figcaption></figure>';
+            //echo '</figure>';
+
             //blog posts===========================
             echo $row['blog_post'];
         }
@@ -512,6 +525,7 @@ function loadBlogPosts()
         while ($row = mysqli_fetch_array($response)) {
             $checker = $row['id'];
 
+
             echo '<div class="item mb-5">';
             echo '<div class="media">';
             echo '<img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="admin/blog_images/';
@@ -522,12 +536,18 @@ function loadBlogPosts()
             echo '" alt="';
 
             //blog image alt text
-            echo 'image';
+            echo $row['title'] . ' image';
+
 
             echo '">';
             echo '<div class="media-body">';
             echo '<h3 class="title mb-1"><a href="post.php?id=';
             echo $row['id'];
+            echo '&cr=';
+            echo str_replace(" ", "_", strtolower($row['dateupdated']));
+            echo '&title=';
+            echo str_replace(" ", "-", strtolower($row['title']));
+            
             echo '">';
 
             //blog title
@@ -538,13 +558,17 @@ function loadBlogPosts()
             echo '</a></h3>';
             echo '<div class="meta mb-1"><span class="date">';
 
-            //blog published time span
-            echo 'Published 3 months ago';
+            //$origDate = new DateTime($row['dateupdated']);
+
+            LoadBlogPostTimeDetails($row['dateupdated']);
+
+
+            //echo 'Published 3 months ago';
 
             echo '</span><span class="time">';
 
             //how long it takes to read in minutes
-            echo '3 min read';
+            echo $row['minread'] . " min read";
 
             echo '</span><span class="comment"><a href="#">';
 
@@ -565,9 +589,12 @@ function loadBlogPosts()
 
             //blog post link
             echo 'post.php?id=';
-            //blog post id
+            //blog post id and title
             echo $row['id'];
-
+            echo '&cr=';
+            echo str_replace(" ", "#", strtolower($row['dateupdated']));
+ echo '&title=';
+            echo str_replace(" ", "-", strtolower($row['title']));
             echo '">Read more &rarr;</a>';
             echo '</div>';
             echo '<!--//media-body-->';
@@ -579,6 +606,75 @@ function loadBlogPosts()
         }
         if (empty($checker)) {
             echo 'No Posts Added Yet';
+        }
+    }
+}
+
+function LoadBlogPostTimeDetails($origDate)
+{
+    //blog published time span
+    $origDate = new DateTime($origDate);
+    $dateNow = new DateTime('now');
+    $interval = $origDate->diff($dateNow);
+    echo 'Published ';
+
+    //how many years ago
+    if (($interval->y) > 0) {
+        //checks if its just one year ago
+        if (($interval->y) == 1) {
+            echo $interval->y . " year ago";
+        } else {
+            echo $interval->y . " years ago";
+        }
+    }
+
+    //how many months ago
+    elseif (($interval->m) > 0) {
+        if (($interval->m) == 1) {
+            echo $interval->m . " month ago";
+        } else {
+            echo $interval->m . " months ago";
+        }
+    }
+
+    //how many days ago
+    elseif (($interval->d) > 0) {
+        //checks if its just one day ago
+        if (($interval->d) == 1) {
+            echo $interval->d . " day ago";
+        } else {
+            echo $interval->d . " days ago";
+        }
+    }
+
+    //how many hours ago
+    elseif (($interval->h) > 0) {
+        if (($interval->h) == 1) {
+            echo $interval->h . " hour ago";
+        } else {
+            //if (($interval->h) <= 9) {
+              //  echo "Few hours ago";
+           // } else {
+                echo $interval->h . " hours ago";
+            //}
+        }
+    }
+
+    //how many minutes ago
+    elseif (($interval->i) > 0) {
+        if (($interval->i) == 1) {
+            echo $interval->i . " minute ago";
+        } else {
+            echo $interval->i . " minutes ago";
+        }
+    }
+
+    //how many minutes ago
+    elseif (($interval->s) > 0) {
+        if (($interval->s) == 1) {
+            echo $interval->s . " second ago";
+        } else {
+            echo $interval->s . " seconds ago";
         }
     }
 }
