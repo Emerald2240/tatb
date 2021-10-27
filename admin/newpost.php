@@ -97,7 +97,7 @@ if (isset($_SESSION['editpost'])) {
         <input type="text" name="rbp" id="editor" class="invisible"> -->
                                     <textarea name="bp" id="editor">
                                         <?php if (isset($_GET['edit']) && $_GET['edit'] == 1) {
-                                            loadBlogPost($_GET['id']);
+                                            adminLoadBlogPost($_GET['id']);
                                         } ?>
                                     </textarea>
                                     <script>

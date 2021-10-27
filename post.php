@@ -1,6 +1,7 @@
 <?php
 require_once "admin/config/connect.php";
 require_once "admin/functions/functions.php";
+addCount($_GET['id']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,12 +33,14 @@ require_once "admin/functions/functions.php";
 			<div class="container">
 				<header class="blog-post-header">
 					<h2 class="title mb-2"><?= strtoupper(str_replace("-", " ", $_GET['title'])) ?></h2>
-					<div class="meta mb-3"><span class="date"><?= LoadBlogPostTimeDetails(str_replace("_", " ", $_GET['cr'])) ?></span><i class="far fa-calendar-alt fa-fw"></i></div>
+					<!-- <div class="meta mb-3"><span class="date"><?= loadBlogPostTimeDetails($_SESSION['created']) ?></span><i class="far fa-calendar-alt fa-fw"></i></div> -->
+					<div class="meta mb-3"><span class="date"><?= loadBlogPostTimeDetails($_SESSION['created']) ?></span><span class="time"><?= $_SESSION['minread'] ?> min read</span><span class="comment"><a href="#">4 comments</a></span></div>
+
 				</header>
 
 				<!-- blog post -->
 				<div class="blog-post-body">
-				
+
 					<?php
 					loadBlogPost($_GET['id']);
 					?>
@@ -94,7 +97,7 @@ require_once "admin/functions/functions.php";
 			<!--//container-->
 		</article>
 
-		
+
 		<!--//promo-section-->
 
 		<footer class="footer text-center py-2 theme-bg-dark">

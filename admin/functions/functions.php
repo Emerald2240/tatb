@@ -60,12 +60,12 @@ function processNewPost($formstream, $editId = null)
             $uniqueimagename = time() . uniqid(rand());
 
             //stores the target folder name in a variable
-            $target = "blog_images/" . $uniqueimagename;
+            $target = "../blog_images/" . $uniqueimagename;
             $allowtypes = array('jpg', 'png', 'jpeg', 'gif', 'svg');
 
             //if the folder doesn't exist, create it.
-            if (!is_dir("blog_images")) {
-                mkdir("blog_images", 0755);
+            if (!is_dir("../blog_images")) {
+                mkdir("../blog_images", 0755);
             }
 
             $filename = "";
@@ -102,7 +102,7 @@ function processNewPost($formstream, $editId = null)
         if (empty($datamissing)) {
 
             if (isset($editId)) {
-                unlink("blog_images/" . $_SESSION['editImage']);
+                unlink("../blog_images/" . $_SESSION['editImage']);
                 EditPost($editId, $title, $bp, $tag, $imagename, $minread);
                 $_SESSION['editpost'] = null;
             } else {
@@ -120,7 +120,8 @@ function AddPost($title, $bp, $tag, $imagename, $minread)
 {
     //This simply adds the filtered and cleansed data into the database 
     global $db;
-    $sql = "INSERT INTO posts(title, 	blog_post, 	imagename,	minread, 	tags 	) VALUES ('$title', '$bp', '$imagename', '$minread', '$tag')";
+    $admin = $_SESSION['admin_id'];
+    $sql = "INSERT INTO posts(title, 	blog_post, 	imagename,	minread, 	tags, author_id 	) VALUES ('$title', '$bp', '$imagename', '$minread', '$tag', '$admin')";
 
     if (mysqli_query($db, $sql)) {
         //$_SESSION['postJustAdded'] = 1;
@@ -259,28 +260,30 @@ function loadPosts()
     //}
 }
 
-//frontend and backend
-function loadBlogPost($id)
+function adminLoadBlogPost($id)
 {
     global $db;
     // $user = $_SESSION['username'];
     // if (!empty($user)) {
-    $query = "SELECT title, imagename, blog_post FROM posts  WHERE posts.id = '$id' ";
+    $query = "SELECT title, imagename, blog_post, dateupdated, minread FROM posts  WHERE posts.id = '$id' ";
     $response = @mysqli_query($db, $query);
     if ($response) {
         while ($row = mysqli_fetch_array($response)) {
-            //blog images===========================
-            echo '<figure class="blog-banner">';
-            //echo '<a href="';
-            //echo 'https://made4dev.com';
-            echo '<img class="img-fluid" src="admin/blog_images/';
-            echo $row['imagename'];
-            echo '" alt="';
-            echo $row['title'] . ' image';
-            echo '">';
-            echo '</a>';
-            echo '<figcaption class="mt-2 text-center image-caption">Image Credit: <a href="https://gettyimages.com?ref=devblog" target="_blank">gettyImages</a></figcaption></figure>';
-            //echo '</figure>';
+
+            // $_SESSION['minread'] = $row['minread'];
+            // $_SESSION['created'] = $row['dateupdated'];
+            // //blog images===========================
+            // echo '<figure class="blog-banner">';
+            // //echo '<a href="';
+            // //echo 'https://made4dev.com';
+            // echo '<img class="img-fluid" src="blog_images/';
+            // echo $row['imagename'];
+            // echo '" alt="';
+            // echo $row['title'] . ' image';
+            // echo '">';
+            // echo '</a>';
+            // echo '<figcaption class="mt-2 text-center image-caption">Image Credit: <a href="https://gettyimages.com?ref=devblog" target="_blank">gettyImages</a></figcaption></figure>';
+            // //echo '</figure>';
 
             //blog posts===========================
             echo $row['blog_post'];
@@ -302,7 +305,7 @@ function deletePost($id)
         //echo '</p>';
         gotoPage('posts.php');
     } else {
-        // echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+        echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
     }
     mysqli_close($db);
 }
@@ -413,14 +416,14 @@ function processNewAdmin($formstream, $editId = null)
 
         if (empty($datamissing)) {
 
-            AddRegistered($firstname, $lastname, $email, $password, $facebook, $twitter, $linkedin, $instagram);
+            addRegistered($firstname, $lastname, $email, $password, $facebook, $twitter, $linkedin, $instagram);
         } else {
             return $datamissing;
         }
     }
 }
 
-function AddRegistered($fname, $lname, $em, $pass, $facebook, $twitter, $linkedin, $instagram)
+function addRegistered($fname, $lname, $em, $pass, $facebook, $twitter, $linkedin, $instagram)
 {
     //This simply adds the filtered and cleansed data into the database 
     global $db;
@@ -519,7 +522,11 @@ function loadBlogPosts()
     global $db;
     // $user = $_SESSION['username'];
     // if (!empty($user)) {
-    $query = "SELECT id, 	title, 	blog_post, 	imagename, 	datecreated, 	dateupdated, 	minread, 	tags  FROM posts ORDER BY `id` DESC ";
+    $query = "SELECT id, 	title, 	blog_post, 	imagename, 	datecreated, 	dateupdated, 	minread, 	tags, unique_reader  FROM posts 
+    ORDER BY `unique_reader` DESC ";
+    //GROUP BY `counter` ORDER BY COUNT(id) DESC ";
+
+
     $response = @mysqli_query($db, $query);
     if ($response) {
         while ($row = mysqli_fetch_array($response)) {
@@ -528,7 +535,7 @@ function loadBlogPosts()
 
             echo '<div class="item mb-5">';
             echo '<div class="media">';
-            echo '<img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="admin/blog_images/';
+            echo '<img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="blog_images/';
 
             //blog image
             echo $row['imagename'];
@@ -543,16 +550,14 @@ function loadBlogPosts()
             echo '<div class="media-body">';
             echo '<h3 class="title mb-1"><a href="post.php?id=';
             echo $row['id'];
-            echo '&cr=';
-            echo str_replace(" ", "_", strtolower($row['dateupdated']));
             echo '&title=';
             echo str_replace(" ", "-", strtolower($row['title']));
-            
+
             echo '">';
 
             //blog title
             //$string = substr($row['title'], 0, 25) . "...";
-            echo ucwords(strtolower($row['title']));
+            echo strtoupper($row['title']);
             //echo 'A Guide to Becoming a Full-Stack Developer';
 
             echo '</a></h3>';
@@ -591,9 +596,7 @@ function loadBlogPosts()
             echo 'post.php?id=';
             //blog post id and title
             echo $row['id'];
-            echo '&cr=';
-            echo str_replace(" ", "#", strtolower($row['dateupdated']));
- echo '&title=';
+            echo '&title=';
             echo str_replace(" ", "-", strtolower($row['title']));
             echo '">Read more &rarr;</a>';
             echo '</div>';
@@ -610,7 +613,7 @@ function loadBlogPosts()
     }
 }
 
-function LoadBlogPostTimeDetails($origDate)
+function loadBlogPostTimeDetails($origDate)
 {
     //blog published time span
     $origDate = new DateTime($origDate);
@@ -618,63 +621,145 @@ function LoadBlogPostTimeDetails($origDate)
     $interval = $origDate->diff($dateNow);
     echo 'Published ';
 
-    //how many years ago
-    if (($interval->y) > 0) {
-        //checks if its just one year ago
-        if (($interval->y) == 1) {
-            echo $interval->y . " year ago";
-        } else {
-            echo $interval->y . " years ago";
+    if (!isset($interval)) {
+        echo "recently";
+    } else {
+        //how many years ago
+        if (($interval->y) > 0) {
+            //checks if its just one year ago
+            if (($interval->y) == 1) {
+                echo $interval->y . " year ago";
+            } else {
+                echo $interval->y . " years ago";
+            }
         }
-    }
 
-    //how many months ago
-    elseif (($interval->m) > 0) {
-        if (($interval->m) == 1) {
-            echo $interval->m . " month ago";
-        } else {
-            echo $interval->m . " months ago";
+        //how many months ago
+        elseif (($interval->m) > 0) {
+            if (($interval->m) == 1) {
+                echo $interval->m . " month ago";
+            } else {
+                echo $interval->m . " months ago";
+            }
         }
-    }
 
-    //how many days ago
-    elseif (($interval->d) > 0) {
-        //checks if its just one day ago
-        if (($interval->d) == 1) {
-            echo $interval->d . " day ago";
-        } else {
-            echo $interval->d . " days ago";
+        //how many days ago
+        elseif (($interval->d) > 0) {
+            //checks if its just one day ago
+            if (($interval->d) == 1) {
+                echo $interval->d . " day ago";
+            } else {
+                echo $interval->d . " days ago";
+            }
         }
-    }
 
-    //how many hours ago
-    elseif (($interval->h) > 0) {
-        if (($interval->h) == 1) {
-            echo $interval->h . " hour ago";
-        } else {
-            //if (($interval->h) <= 9) {
-              //  echo "Few hours ago";
-           // } else {
+        //how many hours ago
+        elseif (($interval->h) > 0) {
+            if (($interval->h) == 1) {
+                echo $interval->h . " hour ago";
+            } else {
+                //if (($interval->h) <= 9) {
+                //  echo "Few hours ago";
+                // } else {
                 echo $interval->h . " hours ago";
-            //}
+                //}
+            }
         }
+
+        //how many minutes ago
+        elseif (($interval->i) > 0) {
+            if (($interval->i) == 1) {
+                echo $interval->i . " minute ago";
+            } else {
+                echo $interval->i . " minutes ago";
+            }
+        }
+
+        //how many minutes ago
+        elseif (($interval->s) > 0) {
+            if (($interval->s) == 1) {
+                echo $interval->s . " second ago";
+            } else {
+                echo $interval->s . " seconds ago";
+            }
+        }
+    }
+}
+
+//frontend and backend
+function loadBlogPost($id)
+{
+    global $db;
+    // $user = $_SESSION['username'];
+    // if (!empty($user)) {
+    $query = "SELECT title, imagename, blog_post, dateupdated, minread FROM posts  WHERE posts.id = '$id' ";
+    $response = @mysqli_query($db, $query);
+    if ($response) {
+        while ($row = mysqli_fetch_array($response)) {
+
+            $_SESSION['minread'] = $row['minread'];
+            $_SESSION['created'] = $row['dateupdated'];
+            //blog images===========================
+            echo '<figure class="blog-banner">';
+            //echo '<a href="';
+            //echo 'https://made4dev.com';
+            echo '<img class="img-fluid" src="blog_images/';
+            echo $row['imagename'];
+            echo '" alt="';
+            echo $row['title'] . ' image';
+            echo '">';
+            echo '</a>';
+            echo '<figcaption class="mt-2 text-center image-caption">Image Credit: <a href="https://gettyimages.com?ref=devblog" target="_blank">gettyImages</a></figcaption></figure>';
+            //echo '</figure>';
+
+            //blog posts===========================
+            echo $row['blog_post'];
+        }
+    }
+}
+
+function addCount($id, $ip = null)
+{
+    global $db;
+
+    if (!isset($ip)) {
+        $visitor_ip = $_SERVER['REMOTE_ADDR'];
+    } else {
+        $visitor_ip = $ip;
     }
 
-    //how many minutes ago
-    elseif (($interval->i) > 0) {
-        if (($interval->i) == 1) {
-            echo $interval->i . " minute ago";
-        } else {
-            echo $interval->i . " minutes ago";
-        }
+    $query = "SELECT * FROM counter WHERE ip = '$visitor_ip' AND post_id = '$id'";
+    $result = mysqli_query($db, $query);
+    $visitor = mysqli_num_rows($result);
+
+    if ($visitor < 1) {
+        $query = "INSERT INTO counter(ip, post_id) VALUES('$visitor_ip', '$id')";
+        $query2 = "UPDATE posts SET unique_reader = unique_reader + 1 WHERE id = $id";
+
+        $result = mysqli_query($db, $query);
+        $result2 = mysqli_query($db, $query2);
     }
 
-    //how many minutes ago
-    elseif (($interval->s) > 0) {
-        if (($interval->s) == 1) {
-            echo $interval->s . " second ago";
-        } else {
-            echo $interval->s . " seconds ago";
-        }
+    $query = "SELECT * FROM counter";
+    $result = mysqli_query($db, $query);
+    if (!$result) {
+        die('<br>Retrieving Query Error<br>' . $query);
+    } else {
+        $total_visitors = mysqli_num_rows($result);
     }
+    //return $total_visitors;
+}
+
+function loadTotalVisitorCount()
+{
+    global $db;
+
+    $query = "SELECT * FROM counter";
+    $result = mysqli_query($db, $query);
+    if (!$result) {
+        die('<br>Retrieving Query Error<br>' . $query);
+    } else {
+        $total_visitors = mysqli_num_rows($result);
+    }
+    //return $total_visitors;
 }
