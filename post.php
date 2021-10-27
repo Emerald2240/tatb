@@ -2,7 +2,7 @@
 require_once "admin/config/connect.php";
 require_once "admin/functions/functions.php";
 addCount($_GET['id'], rand(0, 1000000));
-if ( isset($_SESSION['created']) && isset($_SESSION['minread']) ) {
+if (isset($_SESSION['created']) && isset($_SESSION['minread'])) {
 	$created = $_SESSION['created'];
 	$minread = $_SESSION['minread'];
 } else {

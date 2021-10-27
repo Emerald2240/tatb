@@ -117,12 +117,12 @@ if (isset($_SESSION['editpost'])) {
                                     <div class="mb-5">
                                         <label for="tag">Blog Post Tags(Place semicolon after each one)</label>
                                         <input require type="text" name="tag" id="tag" class="container" <?php
-                                                                                                    if (isset($_GET['edit']) && $_GET['edit'] == 1) {
-                                                                                                        echo 'value="';
-                                                                                                        echo $_GET['tags'];
-                                                                                                        echo '"';
-                                                                                                    }
-                                                                                                    ?>>
+                                                                                                            if (isset($_GET['edit']) && $_GET['edit'] == 1) {
+                                                                                                                echo 'value="';
+                                                                                                                echo $_GET['tags'];
+                                                                                                                echo '"';
+                                                                                                            }
+                                                                                                            ?>>
                                     </div>
 
                                     <!-- <a href="" onclick="showMissingItems()" class="btn btn-danger btn-user btn-block invisible">Process</a> -->
