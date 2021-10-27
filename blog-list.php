@@ -45,10 +45,11 @@ require_once "admin/functions/functions.php";
 			<div class="container">
 
 				<?php
-				if(isset($_GET['pag'])){
+				if (isset($_GET['pag'])) {
 					loadBlogPosts(1, $_GET['pag']);
+				} else {
+					loadBlogPosts(1, 10);
 				}
-				loadBlogPosts(1, round($_GET['id']/0.1)*10);
 				?>
 
 				<nav class="blog-nav nav nav-justified my-5">

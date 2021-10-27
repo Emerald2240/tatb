@@ -11,7 +11,7 @@ require_once "admin/functions/functions.php";
 	<meta property='og:title' content="TATB">
 	<meta property='og:url' content="<?= $_SERVER['PHP_SELF'] ?>">
 	<!-- <meta property='og:description' content="Tech Blog"> -->
-	<!-- <meta property='og:image' itemprop="image" content="<?= 'blog_image/' . getPostImage($_GET['id']) ?>"> -->
+	<!-- <meta property='og:image' itemprop="image" content=""> -->
 	<meta property='keywords' content="Tech Acoustic, TA, TATB, Tech Blog, Tech, Science, Computers">
 	<!-- <meta property='og:locale' content="">
 	<meta property='og:type' content=""> -->

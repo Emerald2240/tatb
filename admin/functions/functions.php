@@ -538,12 +538,11 @@ function loadBlogPosts($newest = null, $pag = null)
         //GROUP BY `counter` ORDER BY COUNT(id) DESC ";
     }
 
-
+$checker = null;
     $response = @mysqli_query($db, $query);
     if ($response) {
         while ($row = mysqli_fetch_array($response)) {
             $checker = $row['id'];
-
 
             echo '<div class="item mb-5">';
             echo '<div class="media">';
@@ -600,7 +599,7 @@ function loadBlogPosts($newest = null, $pag = null)
             echo '<div class="intro">';
 
             //blog post intro
-            $string2 = substr($row['blog_post'], 0, 225);
+            $string2 = substr($row['blog_post'], 0, 26);
             //echo $row['blog_post'];
             echo $string2;
             // echo 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies...';
@@ -623,7 +622,7 @@ function loadBlogPosts($newest = null, $pag = null)
             echo '</div>';
             echo '<!--//item-->';
         }
-        if (empty($checker)) {
+        if ($checker == null) {
             echo 'No Posts Added Yet';
         }
     } else {
@@ -733,7 +732,9 @@ function loadBlogPost($id)
             //echo '</figure>';
 
             //blog posts===========================
+            echo '<p style="wordwrap:break-word;">';
             echo $row['blog_post'];
+            echo '</p>';
         }
     }
 }

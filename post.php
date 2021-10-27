@@ -53,10 +53,12 @@ if (isset($_SESSION['created']) && isset($_SESSION['minread'])) {
 				</header>
 
 				<!-- blog post -->
-				<div class="blog-post-body">
+				<div class="blog-post-body container" >
 
 					<?php
+					
 					loadBlogPost($_GET['id']);
+					
 					?>
 				</div>
 				<!-- blogpost end -->
