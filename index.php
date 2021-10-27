@@ -6,12 +6,18 @@ require_once "admin/functions/functions.php";
 <html lang="en">
 
 <head>
-	<title>TA Tech Blog</title>
+	<title>TA TECH BLOG HOME PAGE</title>
+	<meta name="description" content="<?= 'Tech Blog' ?>">
+	<meta property='og:title' content="TATB">
+	<meta property='og:url' content="<?= $_SERVER['PHP_SELF'] ?>">
+	<!-- <meta property='og:description' content="Tech Blog"> -->
+	<!-- <meta property='og:image' itemprop="image" content="<?= 'blog_image/' . getPostImage($_GET['id']) ?>"> -->
+	<meta property='keywords' content="Tech Acoustic, TA, TATB, Tech Blog, Tech, Science, Computers">
+	<!-- <meta property='og:locale' content="">
+	<meta property='og:type' content=""> -->
 
 	<!-- Meta -->
-	<meta name="description" content="Blog Template">
-	<meta name="author" content="Xiaoying Riley at 3rd Wave Media">
-
+	<meta name="author" content="Orji Michael Chukwuebuka at Tech Acoustic">
 	<?php
 	require_once('includes/head.php');
 	?>

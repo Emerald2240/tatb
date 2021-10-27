@@ -14,11 +14,18 @@ if (isset($_SESSION['created']) && isset($_SESSION['minread'])) {
 <html lang="en">
 
 <head>
-	<title>TA Tech Blog</title>
+	<title><?= strtoupper(str_replace("-", " ", $_GET['title'])) ?></title>
+	<meta name="description" content="<?= 'Tech Blog' ?>">
+	<meta property='og:title' content="<?= strtoupper(str_replace("-", " ", $_GET['title'])) ?>">
+	<meta property='og:url' content="<?= $_SERVER['PHP_SELF'] ?>">
+	<!-- <meta property='og:description' content="Tech Blog"> -->
+	<meta property='og:image' itemprop="image" content="<?= 'blog_image/' . getPostImage($_GET['id']) ?>">
+	<meta property='keywords' content="<?= loadKeywords($id) ?>">
+	<!-- <meta property='og:locale' content="">
+	<meta property='og:type' content=""> -->
 
 	<!-- Meta -->
-	<meta name="description" content="Blog Template">
-	<meta name="author" content="Xiaoying Riley at 3rd Wave Media">
+	<meta name="author" content="Orji Michael Chukwuebuka at Tech Acoustic">
 
 	<?php
 	require_once('includes/head.php');
@@ -54,9 +61,17 @@ if (isset($_SESSION['created']) && isset($_SESSION['minread'])) {
 				</div>
 				<!-- blogpost end -->
 
+
 				<nav class="blog-nav nav nav-justified my-5">
-					<a class="nav-link-prev nav-item nav-link rounded-left" href="index.php">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
-					<a class="nav-link-next nav-item nav-link rounded-right" href="blog-list.php">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+
+					<?php if (getPrevId($_GET['id']) > 1) { ?>
+						<a class="nav-link-prev nav-item nav-link rounded-left" href="<?= $_SERVER['PHP_SELF'] ?>?id=<?= getPrevId($_GET['id']) ?>&title=<?= getPrevTitle($_GET['id']) ?>">Previous Post<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+					<?php } ?>
+
+					<?php if (getNextId($_GET['id']) > 1) { ?>
+						<a class="nav-link-next nav-item nav-link rounded-right" href="<?= $_SERVER['PHP_SELF'] ?>?id=<?= getNextId($_GET['id']) ?>&title=<?= getNextTitle($_GET['id']) ?>">Next Post<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+					<?php } ?>
+
 				</nav>
 
 				<div class="blog-comments-section">

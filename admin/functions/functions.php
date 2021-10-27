@@ -787,3 +787,114 @@ function loadPostCount()
     $result = mysqli_query($db, $query);
     return mysqli_num_rows($result);
 }
+
+function getNextId($id)
+{
+    global $db;
+
+    $query = "SELECT * FROM posts WHERE id > $id ORDER BY id LIMIT 1";
+    $result = mysqli_query($db, $query);
+    if (!$result) {
+        echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+    } else {
+        if ($result) {
+            while ($row = mysqli_fetch_array($result)) {
+                return $row['id'];
+            }
+        }
+       // $total_visitors = mysqli_num_rows($result);
+    }
+}
+
+function getNextTitle($id)
+{
+    global $db;
+
+    $query = "SELECT * FROM posts WHERE id > $id ORDER BY id LIMIT 1";
+    $result = mysqli_query($db, $query);
+    if (!$result) {
+        echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+    } else {
+        if ($result) {
+            while ($row = mysqli_fetch_array($result)) {
+                return str_replace(" ", "-", strtolower($row['title']));
+            }
+        }
+       // $total_visitors = mysqli_num_rows($result);
+    }
+}
+
+function getPrevId($id)
+{
+    global $db;
+
+    $query = "SELECT * FROM posts WHERE id < $id ORDER BY id LIMIT 1";
+    $result = mysqli_query($db, $query);
+    if (!$result) {
+        echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+    } else {
+        if ($result) {
+            while ($row = mysqli_fetch_array($result)) {
+                return $row['id'];
+            }
+        }
+       // $total_visitors = mysqli_num_rows($result);
+    }
+}
+
+function getPrevTitle($id)
+{
+    global $db;
+
+    $query = "SELECT * FROM posts WHERE id < $id ORDER BY id LIMIT 1";
+    $result = mysqli_query($db, $query);
+    if (!$result) {
+        echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+    } else {
+        if ($result) {
+            while ($row = mysqli_fetch_array($result)) {
+                return str_replace(" ", "-", strtolower($row['title']));
+            }
+        }
+       // $total_visitors = mysqli_num_rows($result);
+    }
+}
+
+
+function getPostImage($id){
+    global $db;
+
+    $query = "SELECT imagename FROM posts WHERE id = $id";
+    $result = mysqli_query($db, $query);
+    if (!$result) {
+        echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+    } else {
+        if ($result) {
+            while ($row = mysqli_fetch_array($result)) {
+                echo $row['imagename'];
+            }
+        }
+       // $total_visitors = mysqli_num_rows($result);
+    }
+}
+
+function loadKeywords($id){
+    global $db;
+
+    $query = "SELECT tags FROM posts WHERE id = $id";
+    $result = mysqli_query($db, $query);
+    if (!$result) {
+        echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+    } else {
+        if ($result) {
+            while ($row = mysqli_fetch_array($result)) {
+                $splitedTopicsArray = explode(";", $row['tags']);
+            }
+            foreach($splitedTopicsArray as $tag){
+                echo $tag. ',';
+            }
+        }
+       // $total_visitors = mysqli_num_rows($result);
+    }
+}
+//$splitedTopicsArray = explode(";", $topicsArray);
