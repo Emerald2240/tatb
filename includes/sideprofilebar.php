@@ -34,7 +34,7 @@
                                 echo 'active';
                             }
                             ?>">
-					    <a class="nav-link" href="blog-list.php"><i class="fas fa-bookmark fa-fw mr-2"></i>Posts</a>
+					    <a class="nav-link" href="blog-list.php?pag=10"><i class="fas fa-bookmark fa-fw mr-2"></i>Latest Posts</a>
 					</li>
 					<!-- <li class="nav-item">
 					    <a class="nav-link" href="about.php"><i class="fas fa-user fa-fw mr-2"></i>About Me</a>

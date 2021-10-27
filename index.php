@@ -34,7 +34,11 @@ require_once "admin/functions/functions.php";
 		<section class="blog-list px-3 py-5 p-md-5">
 			<div class="container">
 				<?php
-				loadBlogPosts();
+				if (!isset($_GET['pag'])) {
+					loadBlogPosts(null, 10);
+				} else {
+					loadBlogPosts(null, $_GET['pag']);
+				}
 				?>
 				<!-- <div class="item mb-5">
 					<div class="media">
@@ -52,8 +56,31 @@ require_once "admin/functions/functions.php";
 				//item -->
 
 				<nav class="blog-nav nav nav-justified my-5">
-					<a class="nav-link-prev nav-item nav-link d-none rounded-left" href="#">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
-					<a class="nav-link-next nav-item nav-link rounded" href="blog-list.php">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+					<?php
+					//This section checks the total post count and determines if to show next or previous or both
+					//Previous
+					if (isset($_GET['pag'])) {
+
+						//if the pagination variable is less than or equals to 10, this means we cant go back so no previous button is shown
+						if ($_GET['pag'] <= 10) {
+						} else { ?>
+							<a class="nav-link-prev nav-item nav-link rounded-left" href="index.php?pag=<?= $_GET['pag'] - 10 ?>">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+						<?php } ?>
+
+
+						<?php
+						//Next
+						//if total post count is greater than pagination variable, then show next button
+						if (loadPostCount() > $_GET['pag']) {
+						?>
+							<a class="nav-link-next nav-item nav-link rounded-right" href="index.php?pag=<?php echo $_GET['pag'] + 10; ?>">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+						<?php } else {
+							//Default next button
+						?>
+						<?php }
+					} else { ?>
+						<a class="nav-link-next nav-item nav-link rounded-right" href="index.php?pag=20">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+					<?php } ?>
 				</nav>
 
 			</div>

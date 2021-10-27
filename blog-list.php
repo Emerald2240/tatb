@@ -34,24 +34,22 @@ require_once "admin/functions/functions.php";
 		<section class="blog-list px-3 py-5 p-md-5">
 			<div class="container">
 
-				<div class="item mb-5">
-					<div class="media">
-						<img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="assets/images/blog/blog-post-thumb-7.jpg" alt="image">
-						<div class="media-body">
-							<h3 class="title mb-1"><a href="blog-post.php">Heading Lorem Ipsum Dolor Sit Amet</a></h3>
-							<div class="meta mb-1"><span class="date">Published 3 months ago</span><span class="time">5 min read</span><span class="comment"><a href="#">4 comments</a></span></div>
-							<div class="intro">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies...</div>
-							<a class="more-link" href="blog-post.php">Read more &rarr;</a>
-						</div>
-						<!--//media-body-->
-					</div>
-					<!--//media-->
-				</div>
-				<!-- item body end -->
+			<?php
+				loadBlogPosts(1, $_GET['pag']);
+				?>
 				
 				<nav class="blog-nav nav nav-justified my-5">
-					<a class="nav-link-prev nav-item nav-link rounded-left" href="index.php">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
-					<a class="nav-link-next nav-item nav-link rounded-right" href="blog-list.php">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+				<?php 
+					if($_GET['pag'] > 10){
+					?>
+					<a class="nav-link-prev nav-item nav-link rounded-left" href="blog-list.php?pag=<?= $_GET['pag'] - 10?>">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+					<?php } ?>
+
+					<?php 
+					if(loadPostCount() > $_GET['pag']){
+					?>
+					<a class="nav-link-next nav-item nav-link rounded-right" href="blog-list.php?pag=<?= $_GET['pag'] + 10?>">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+					<?php } ?>
 				</nav>
 
 			</div>

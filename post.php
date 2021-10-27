@@ -1,7 +1,14 @@
 <?php
 require_once "admin/config/connect.php";
 require_once "admin/functions/functions.php";
-addCount($_GET['id']);
+addCount($_GET['id'], rand(0, 1000000));
+if ( isset($_SESSION['created']) && isset($_SESSION['minread']) ) {
+	$created = $_SESSION['created'];
+	$minread = $_SESSION['minread'];
+} else {
+	$created = null;
+	$minread = null;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,8 +40,8 @@ addCount($_GET['id']);
 			<div class="container">
 				<header class="blog-post-header">
 					<h2 class="title mb-2"><?= strtoupper(str_replace("-", " ", $_GET['title'])) ?></h2>
-					<!-- <div class="meta mb-3"><span class="date"><?= loadBlogPostTimeDetails($_SESSION['created']) ?></span><i class="far fa-calendar-alt fa-fw"></i></div> -->
-					<div class="meta mb-3"><span class="date"><?= loadBlogPostTimeDetails($_SESSION['created']) ?></span><span class="time"><?= $_SESSION['minread'] ?> min read</span><span class="comment"><a href="#">4 comments</a></span></div>
+					<!-- <div class="meta mb-3"><span class="date"><?= loadBlogPostTimeDetails() ?></span><i class="far fa-calendar-alt fa-fw"></i></div> -->
+					<div class="meta mb-3"><span class="date"><?= loadBlogPostTimeDetails($created) ?></span><span class="time"><?= $minread ?> min read</span><span class="comment"><a href="#">4 comments</a></span></div>
 
 				</header>
 

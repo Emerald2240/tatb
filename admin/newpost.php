@@ -116,7 +116,7 @@ if (isset($_SESSION['editpost'])) {
 
                                     <div class="mb-5">
                                         <label for="tag">Blog Post Tags(Place semicolon after each one)</label>
-                                        <input type="text" name="tag" id="tag" class="container" <?php
+                                        <input require type="text" name="tag" id="tag" class="container" <?php
                                                                                                     if (isset($_GET['edit']) && $_GET['edit'] == 1) {
                                                                                                         echo 'value="';
                                                                                                         echo $_GET['tags'];

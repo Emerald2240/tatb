@@ -516,15 +516,27 @@ function processLogin($formstream)
 
 //////////////////////////////////////////////FRONTEND//////////////////////////////////////////////
 
-function loadBlogPosts()
+function loadBlogPosts($newest = null, $pag = null)
 {
     //This loads up all the posts available and fills their links/options with the required items so they can be worked on and used to get more data on that particular course
     global $db;
+
+    //pagination section
+    if (isset($pag)) {
+        $end = $pag;
+    } else {
+        $end = 10;
+    }
+    $start = $end - 10;
+
     // $user = $_SESSION['username'];
     // if (!empty($user)) {
-    $query = "SELECT id, 	title, 	blog_post, 	imagename, 	datecreated, 	dateupdated, 	minread, 	tags, unique_reader  FROM posts 
-    ORDER BY `unique_reader` DESC ";
-    //GROUP BY `counter` ORDER BY COUNT(id) DESC ";
+    if ($newest == 1) {
+        $query = "SELECT id, 	title, 	blog_post, 	imagename, 	datecreated, 	dateupdated, 	minread, 	tags, unique_reader  FROM posts ORDER BY `id` DESC LIMIT $start, $end ";
+    } else {
+        $query = "SELECT id, 	title, 	blog_post, 	imagename, 	datecreated, 	dateupdated, 	minread, 	tags, unique_reader  FROM posts  ORDER BY `unique_reader` DESC LIMIT $start, $end";
+        //GROUP BY `counter` ORDER BY COUNT(id) DESC ";
+    }
 
 
     $response = @mysqli_query($db, $query);
@@ -610,20 +622,24 @@ function loadBlogPosts()
         if (empty($checker)) {
             echo 'No Posts Added Yet';
         }
+    } else {
+        echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
     }
 }
 
-function loadBlogPostTimeDetails($origDate)
+function loadBlogPostTimeDetails($origDate = null)
 {
-    //blog published time span
-    $origDate = new DateTime($origDate);
-    $dateNow = new DateTime('now');
-    $interval = $origDate->diff($dateNow);
-    echo 'Published ';
-
-    if (!isset($interval)) {
-        echo "recently";
+    if ($origDate == null) {
+        echo "Published recently";
     } else {
+
+        //blog published time span
+        $origDate = new DateTime($origDate);
+        $dateNow = new DateTime('now');
+        $interval = $origDate->diff($dateNow);
+        echo 'Published ';
+
+
         //how many years ago
         if (($interval->y) > 0) {
             //checks if its just one year ago
@@ -762,4 +778,12 @@ function loadTotalVisitorCount()
         $total_visitors = mysqli_num_rows($result);
     }
     //return $total_visitors;
+}
+
+function loadPostCount()
+{
+    global $db;
+    $query = "SELECT * FROM posts";
+    $result = mysqli_query($db, $query);
+    return mysqli_num_rows($result);
 }

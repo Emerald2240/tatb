@@ -10,9 +10,9 @@ if (!isset($_SESSION['log'])) {
 <html lang="en">
 
 <head>
-<?php
-require_once('includes/head.php');
-?>
+    <?php
+    require_once('includes/head.php');
+    ?>
 </head>
 
 <body id="page-top">
@@ -21,9 +21,9 @@ require_once('includes/head.php');
     <div id="wrapper">
 
         <!-- Sidebar -->
-            <?php
-            require_once('includes/sidebar.php');
-            ?>
+        <?php
+        require_once('includes/sidebar.php');
+        ?>
         </ul>
         <!-- End of Sidebar -->
 
@@ -35,8 +35,8 @@ require_once('includes/head.php');
 
                 <!-- Topbar -->
                 <?php
-            require_once('includes/topbar.php');
-            ?>
+                require_once('includes/topbar.php');
+                ?>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -47,9 +47,9 @@ require_once('includes/head.php');
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
                     </div>
 
-                 
 
-                 
+
+
 
                 </div>
                 <!-- /.container-fluid -->
@@ -58,9 +58,9 @@ require_once('includes/head.php');
             <!-- End of Main Content -->
 
             <!-- Footer -->
-          <?php
-          require_once('includes/footer.php');
-          ?>
+            <?php
+            require_once('includes/footer.php');
+            ?>
             <!-- End of Footer -->
 
         </div>
@@ -75,9 +75,9 @@ require_once('includes/head.php');
     </a>
 
     <!-- Logout Modal-->
-   <?php
-   require_once('includes/logout_modal.php');
-   ?>
+    <?php
+    require_once('includes/logout_modal.php');
+    ?>
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
