@@ -3,7 +3,7 @@ require_once "config/connect.php";
 require_once "functions/functions.php";
 
 if (!isset($_SESSION['log'])) {
-   //gotoPage('login.php');
+    //gotoPage('login.php');
 }
 
 if (isset($_GET['edit'])) {
@@ -59,7 +59,8 @@ if (isset($_SESSION['editpost'])) {
                             <?php
                             showDataMissing($datamissing);
                             ?>
-                            <form action=<?= $_SERVER['PHP_SELF'] ?> enctype="multipart/form-data" method="post">
+                            <!-- <?= $_SERVER['PHP_SELF'] ?> -->
+                            <form action="" enctype="multipart/form-data" method="post">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user" id="exampleFirstName" name="firstname" placeholder="First Name" required>

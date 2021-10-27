@@ -19,8 +19,8 @@ if (isset($_SESSION['created']) && isset($_SESSION['minread'])) {
 	<meta property='og:title' content="<?= strtoupper(str_replace("-", " ", $_GET['title'])) ?>">
 	<meta property='og:url' content="<?= $_SERVER['PHP_SELF'] ?>">
 	<!-- <meta property='og:description' content="Tech Blog"> -->
-	<meta property='og:image' itemprop="image" content="<?= 'blog_image/' . getPostImage($_GET['id']) ?>">
-	<meta property='keywords' content="<?= loadKeywords($id) ?>">
+	<meta property='og:image' itemprop="image" content="blog_image/<?= getPostImage($_GET['id']) ?>">
+	<meta property='keywords' content="<?= loadKeywords($_GET['id']) ?>">
 	<!-- <meta property='og:locale' content="">
 	<meta property='og:type' content=""> -->
 
@@ -48,7 +48,7 @@ if (isset($_SESSION['created']) && isset($_SESSION['minread'])) {
 				<header class="blog-post-header">
 					<h2 class="title mb-2"><?= strtoupper(str_replace("-", " ", $_GET['title'])) ?></h2>
 					<!-- <div class="meta mb-3"><span class="date"><?= loadBlogPostTimeDetails() ?></span><i class="far fa-calendar-alt fa-fw"></i></div> -->
-					<div class="meta mb-3"><span class="date"><?= loadBlogPostTimeDetails($created) ?></span><span class="time"><?= $minread ?> min read</span><span class="comment"><a href="#">4 comments</a></span></div>
+					<div class="meta mb-3"><span class="date"><?= loadBlogPostTimeDetails($created) ?></span><span class="time"><?= $minread ?> min read</span><span class="comment"><a href="post.php?id=<?= $_GET['id']?>&title=<?= $_GET['title']?>#disqus_thread">comments</a></span></div>
 
 				</header>
 
@@ -85,22 +85,22 @@ if (isset($_SESSION['created']) && isset($_SESSION['minread'])) {
 						 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: 
 						 *  https://disqus.com/admin/universalcode/#configuration-variables
 						 */
-						/*
-						var disqus_config = function () {
-						    // Replace PAGE_URL with your page's canonical URL variable
-						    this.page.url = PAGE_URL;  
-						    
-						    // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-						    this.page.identifier = PAGE_IDENTIFIER; 
+
+						var disqus_config = function() {
+							// Replace PAGE_URL with your page's canonical URL variable
+							this.page.url = <?= $_SERVER['PHP_SELF'] . '?id=' . $_GET['id'] . '&title=' . $_GET['title'] ?>;
+
+							// Replace PAGE_IDENTIFIER with your page's unique identifier variable
+							this.page.identifier = <?= $_GET['id'] ?>;
 						};
-						*/
+
 
 						(function() { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
 							var d = document,
 								s = d.createElement('script');
 
 							// IMPORTANT: Replace 3wmthemes with your forum shortname!
-							s.src = 'https://3wmthemes.disqus.com/embed.js';
+							s.src = 'https://techac-net-tatb.disqus.com/embed.js';
 
 							s.setAttribute('data-timestamp', +new Date());
 							(d.head || d.body).appendChild(s);
@@ -145,6 +145,7 @@ if (isset($_SESSION['created']) && isset($_SESSION['minread'])) {
 	<?php
 	//require_once('includes/styleswitch.php')
 	?>
+<script id="dsq-count-scr" src="//techac-net-tatb.disqus.com/count.js" async></script>
 
 </body>
 

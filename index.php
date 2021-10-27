@@ -110,7 +110,7 @@ require_once "admin/functions/functions.php";
 	//require_once('includes/styleswitch.php')
 	?>
 
-
+<script id="dsq-count-scr" src="//techac-net-tatb.disqus.com/count.js" async></script>
 </body>
 
 </html>

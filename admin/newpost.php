@@ -76,8 +76,8 @@ if (isset($_SESSION['editpost'])) {
                             showDataMissing($datamissing);
                             ?>
                             <!--  -->
-                            <!-- "functions/test.php" -->
-                            <form action=<?= $_SERVER['PHP_SELF'] ?> method="post" enctype="multipart/form-data">
+                            <!-- "functions/test.php" <?= $_SERVER['PHP_SELF'] ?>-->
+                            <form action="" method="post" enctype="multipart/form-data">
 
                                 <div class="mb-5">
                                     <label for="title">Blog Title</label>

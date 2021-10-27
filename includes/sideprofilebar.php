@@ -8,7 +8,7 @@
 
 	<div id="navigation" class="collapse navbar-collapse flex-column">
 		<div class="profile-section pt-3 pt-lg-0">
-			<img class="profile-image mb-3 rounded-circle mx-auto" src="assets/images/mike.png" alt="image">
+			<img class="profile-image mb-3 rounded-circle mx-auto" src="assets/images/mike.jpg" alt="image">
 
 			<div class="bio mb-3">Hi, my name is Orji Michael Chukwuebuka. I'm a Computer Engineer and Software Developer.<br>My Job is quite simply to make the world a better place by solving problems.<br><a href="about.php">Find out more about me</a></div>
 			<!--//bio-->

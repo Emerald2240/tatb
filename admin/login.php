@@ -52,7 +52,8 @@ $datamissing =  processLogin($_POST);
                                     <?php
                                     showDataMissing($datamissing);
                                     ?>
-                                    <form class="user" action=<?= $_SERVER['PHP_SELF'] ?> method="post">
+                                    <!-- <?= $_SERVER['PHP_SELF'] ?> -->
+                                    <form class="user" action="" method="post">
                                         <div class="form-group">
                                             <input type="email" value="<?php if (isset($_COOKIE['mem_mail'])) {
                                                                             echo $_COOKIE['mem_mail'];
@@ -61,7 +62,7 @@ $datamissing =  processLogin($_POST);
                                         <div class="form-group">
                                             <input name="password" value="<?php if (isset($_COOKIE['mem_pass'])) {
                                                                                 echo $_COOKIE['mem_pass'];
-                                                                            } ?>" type="password" class="form-control form-control-user" id="exampleInputPassword"      placeholder="Password">
+                                                                            } ?>" type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">

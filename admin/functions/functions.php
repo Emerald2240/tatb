@@ -564,7 +564,7 @@ function loadBlogPosts($newest = null, $pag = null)
             echo $row['id'];
             echo '&title=';
             echo str_replace(" ", "-", strtolower($row['title']));
-
+            //echo '#disqus_thread';
             echo '">';
 
             //blog title
@@ -587,11 +587,15 @@ function loadBlogPosts($newest = null, $pag = null)
             //how long it takes to read in minutes
             echo $row['minread'] . " min read";
 
-            echo '</span><span class="comment"><a href="#">';
+            echo '</span><span class="comment"><a href="post.php?id=';
 
             //How many comments
-            echo '26 comments';
-
+            echo $row['id'];
+            echo '&title=';
+            echo str_replace(" ", "-", strtolower($row['title']));
+            echo '#disqus_thread';
+            echo '">';
+            echo 'comments';
             echo '</a></span></div>';
             echo '<div class="intro">';
 
@@ -724,7 +728,7 @@ function loadBlogPost($id)
             echo '" alt="';
             echo $row['title'] . ' image';
             echo '">';
-            echo '</a>';
+            //echo '</a>';
             echo '<figcaption class="mt-2 text-center image-caption">Image Credit: <a href="https://gettyimages.com?ref=devblog" target="_blank">gettyImages</a></figcaption></figure>';
             //echo '</figure>';
 
@@ -802,7 +806,7 @@ function getNextId($id)
                 return $row['id'];
             }
         }
-       // $total_visitors = mysqli_num_rows($result);
+        // $total_visitors = mysqli_num_rows($result);
     }
 }
 
@@ -820,7 +824,7 @@ function getNextTitle($id)
                 return str_replace(" ", "-", strtolower($row['title']));
             }
         }
-       // $total_visitors = mysqli_num_rows($result);
+        // $total_visitors = mysqli_num_rows($result);
     }
 }
 
@@ -838,7 +842,7 @@ function getPrevId($id)
                 return $row['id'];
             }
         }
-       // $total_visitors = mysqli_num_rows($result);
+        // $total_visitors = mysqli_num_rows($result);
     }
 }
 
@@ -856,12 +860,13 @@ function getPrevTitle($id)
                 return str_replace(" ", "-", strtolower($row['title']));
             }
         }
-       // $total_visitors = mysqli_num_rows($result);
+        // $total_visitors = mysqli_num_rows($result);
     }
 }
 
 
-function getPostImage($id){
+function getPostImage($id)
+{
     global $db;
 
     $query = "SELECT imagename FROM posts WHERE id = $id";
@@ -874,11 +879,12 @@ function getPostImage($id){
                 echo $row['imagename'];
             }
         }
-       // $total_visitors = mysqli_num_rows($result);
+        // $total_visitors = mysqli_num_rows($result);
     }
 }
 
-function loadKeywords($id){
+function loadKeywords($id)
+{
     global $db;
 
     $query = "SELECT tags FROM posts WHERE id = $id";
@@ -890,11 +896,11 @@ function loadKeywords($id){
             while ($row = mysqli_fetch_array($result)) {
                 $splitedTopicsArray = explode(";", $row['tags']);
             }
-            foreach($splitedTopicsArray as $tag){
-                echo $tag. ',';
+            foreach ($splitedTopicsArray as $tag) {
+                echo $tag . ',';
             }
         }
-       // $total_visitors = mysqli_num_rows($result);
+        // $total_visitors = mysqli_num_rows($result);
     }
 }
 //$splitedTopicsArray = explode(";", $topicsArray);
