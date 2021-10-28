@@ -538,7 +538,7 @@ function loadBlogPosts($newest = null, $pag = null)
         //GROUP BY `counter` ORDER BY COUNT(id) DESC ";
     }
 
-$checker = null;
+    $checker = null;
     $response = @mysqli_query($db, $query);
     if ($response) {
         while ($row = mysqli_fetch_array($response)) {
@@ -594,7 +594,7 @@ $checker = null;
             echo str_replace(" ", "-", strtolower($row['title']));
             echo '#disqus_thread';
             echo '">';
-            echo 'comments';
+            //echo 'Comments';
             echo '</a></span></div>';
             echo '<div class="intro">';
 
@@ -711,7 +711,7 @@ function loadBlogPost($id)
     global $db;
     // $user = $_SESSION['username'];
     // if (!empty($user)) {
-    $query = "SELECT title, imagename, blog_post, dateupdated, minread FROM posts  WHERE posts.id = '$id' ";
+    $query = "SELECT title, imagename, blog_post, dateupdated, minread FROM posts  WHERE posts.id = '$id' LIMIT 1";
     $response = @mysqli_query($db, $query);
     if ($response) {
         while ($row = mysqli_fetch_array($response)) {
@@ -732,9 +732,7 @@ function loadBlogPost($id)
             //echo '</figure>';
 
             //blog posts===========================
-            echo '<p style="wordwrap:break-word;">';
             echo $row['blog_post'];
-            echo '</p>';
         }
     }
 }
@@ -833,7 +831,7 @@ function getPrevId($id)
 {
     global $db;
 
-    $query = "SELECT * FROM posts WHERE id < $id ORDER BY id LIMIT 1";
+    $query = "SELECT * FROM posts WHERE id < $id ORDER BY id  DESC LIMIT 1";
     $result = mysqli_query($db, $query);
     if (!$result) {
         echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
@@ -851,7 +849,7 @@ function getPrevTitle($id)
 {
     global $db;
 
-    $query = "SELECT * FROM posts WHERE id < $id ORDER BY id LIMIT 1";
+    $query = "SELECT * FROM posts WHERE id < $id  ORDER BY id DESC LIMIT 1";
     $result = mysqli_query($db, $query);
     if (!$result) {
         echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);

@@ -17,9 +17,9 @@ if (isset($_SESSION['created']) && isset($_SESSION['minread'])) {
 	<title><?= strtoupper(str_replace("-", " ", $_GET['title'])) ?></title>
 	<meta name="description" content="<?= 'Tech Blog' ?>">
 	<meta property='og:title' content="<?= strtoupper(str_replace("-", " ", $_GET['title'])) ?>">
-	<meta property='og:url' content="<?= $_SERVER['PHP_SELF'] ?>">
+	<meta property='og:url' content="<?= 'https://techac.net/tatb/post.php' . '?id=' . $_GET['id'] . '&title=' . $_GET['title'] ?>;">
 	<!-- <meta property='og:description' content="Tech Blog"> -->
-	<meta property='og:image' itemprop="image" content="blog_image/<?= getPostImage($_GET['id']) ?>">
+	<meta property='og:image' itemprop="image" content="https://techac.net/tatb/blog_image/<?= getPostImage($_GET['id']) ?>">
 	<meta property='keywords' content="<?= loadKeywords($_GET['id']) ?>">
 	<!-- <meta property='og:locale' content="">
 	<meta property='og:type' content=""> -->
@@ -31,6 +31,13 @@ if (isset($_SESSION['created']) && isset($_SESSION['minread'])) {
 	require_once('includes/head.php');
 	?>
 </head>
+<style>
+	.blog-post-body {
+		/* background-color: black; */
+		/* overflow:auto; */
+		line-break: anywhere;
+	}
+</style>
 
 
 <body>
@@ -47,19 +54,20 @@ if (isset($_SESSION['created']) && isset($_SESSION['minread'])) {
 			<div class="container">
 				<header class="blog-post-header">
 					<h2 class="title mb-2"><?= strtoupper(str_replace("-", " ", $_GET['title'])) ?></h2>
-					<!-- <div class="meta mb-3"><span class="date"><?= loadBlogPostTimeDetails() ?></span><i class="far fa-calendar-alt fa-fw"></i></div> -->
-					<div class="meta mb-3"><span class="date"><?= loadBlogPostTimeDetails($created) ?></span><span class="time"><?= $minread ?> min read</span><span class="comment"><a href="post.php?id=<?= $_GET['id']?>&title=<?= $_GET['title']?>#disqus_thread">comments</a></span></div>
-
+					<div class="meta mb-3">
+						<span class="date"><?= loadBlogPostTimeDetails($created) ?><i class="far fa-calendar-alt fa-fw"></i></span>
+						<span class="comment"><a href="post.php?id=<?= $_GET['id'] ?>&title=<?= $_GET['title'] ?>#disqus_thread"></a></span></div>
 				</header>
 
 				<!-- blog post -->
-				<div class="blog-post-body container" >
+				<div class="blog-post-body container">
 
 					<?php
-					
+
 					loadBlogPost($_GET['id']);
-					
+
 					?>
+
 				</div>
 				<!-- blogpost end -->
 
@@ -90,10 +98,12 @@ if (isset($_SESSION['created']) && isset($_SESSION['minread'])) {
 
 						var disqus_config = function() {
 							// Replace PAGE_URL with your page's canonical URL variable
-							this.page.url = <?= $_SERVER['PHP_SELF'] . '?id=' . $_GET['id'] . '&title=' . $_GET['title'] ?>;
+							<?= 'https://techac.net/tatb/post.php' . '?id=' . $_GET['id'] . '&title=' . $_GET['title'] ?>;
+							this.page.url = techac.net/tatb/post.php?id:<?= $_GET['id'] ?>;
 
 							// Replace PAGE_IDENTIFIER with your page's unique identifier variable
-							this.page.identifier = <?= $_GET['id'] ?>;
+							//this.page.identifier = <?= $_GET['id'] ?>;
+							this.page.identifier = id;
 						};
 
 
@@ -147,7 +157,7 @@ if (isset($_SESSION['created']) && isset($_SESSION['minread'])) {
 	<?php
 	//require_once('includes/styleswitch.php')
 	?>
-<script id="dsq-count-scr" src="//techac-net-tatb.disqus.com/count.js" async></script>
+	<script id="dsq-count-scr" src="//techac-net-tatb.disqus.com/count.js" async></script>
 
 </body>
 
