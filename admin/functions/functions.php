@@ -599,7 +599,7 @@ function loadBlogPosts($newest = null, $pag = null)
             echo '<div class="intro">';
 
             //blog post intro
-            $string2 = substr($row['blog_post'], 0, 26);
+            $string2 = substr($row['blog_post'], 0, 225). '...';
             //echo $row['blog_post'];
             echo $string2;
             // echo 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies...';
@@ -614,6 +614,8 @@ function loadBlogPosts($newest = null, $pag = null)
             echo '&title=';
             echo str_replace(" ", "-", strtolower($row['title']));
             echo '">Read more &rarr;</a>';
+
+            
             echo '</div>';
             echo '<!--//media-body-->';
 

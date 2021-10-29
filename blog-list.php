@@ -27,6 +27,14 @@ require_once "admin/functions/functions.php";
 	?>
 </head>
 
+<style>
+	.media-body {
+		/* background-color: black; */
+		/* overflow:auto; */
+		line-break: auto;
+	}
+</style>
+
 <body>
 	<header class="header text-center">
 		<?php

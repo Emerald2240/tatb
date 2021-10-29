@@ -11,4 +11,11 @@
 <link rel="stylesheet" href="assets/fa/css/all.css">
 
 <!-- Theme CSS -->
-<link id="theme-style" rel="stylesheet" href="assets/css/theme-7.css">
+<link id="theme-style" rel="stylesheet" href="assets/css/theme-7.css?v=<?php echo time(); ?>">
+<style>
+	.blog-post-, .media-body {
+		/* background-color: black; */
+		/* overflow:auto; */
+		line-break: auto;
+	}
+</style>

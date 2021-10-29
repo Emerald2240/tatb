@@ -1,7 +1,7 @@
 <?php
 require_once "admin/config/connect.php";
 require_once "admin/functions/functions.php";
-addCount($_GET['id'], rand(0, 1000000));
+addCount($_GET['id']);
 if (isset($_SESSION['created']) && isset($_SESSION['minread'])) {
 	$created = $_SESSION['created'];
 	$minread = $_SESSION['minread'];
@@ -30,14 +30,9 @@ if (isset($_SESSION['created']) && isset($_SESSION['minread'])) {
 	<?php
 	require_once('includes/head.php');
 	?>
+	
 </head>
-<style>
-	.blog-post-body {
-		/* background-color: black; */
-		/* overflow:auto; */
-		line-break: anywhere;
-	}
-</style>
+
 
 
 <body>
@@ -55,12 +50,13 @@ if (isset($_SESSION['created']) && isset($_SESSION['minread'])) {
 				<header class="blog-post-header">
 					<h2 class="title mb-2"><?= strtoupper(str_replace("-", " ", $_GET['title'])) ?></h2>
 					<div class="meta mb-3">
-						<span class="date"><?= loadBlogPostTimeDetails($created) ?><i class="far fa-calendar-alt fa-fw"></i></span>
+						<span class="date"><?= loadBlogPostTimeDetails($created) ?> </span>
+						<span class="date"><i class="far fa-calendar-alt fa-fw"></i></span>
 						<span class="comment"><a href="post.php?id=<?= $_GET['id'] ?>&title=<?= $_GET['title'] ?>#disqus_thread"></a></span></div>
 				</header>
 
 				<!-- blog post -->
-				<div class="blog-post-body container">
+				<div class="blog-post-body">
 
 					<?php
 
