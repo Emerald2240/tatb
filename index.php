@@ -7,11 +7,10 @@ require_once "admin/functions/functions.php";
 
 <head>
 	<title>TA TECH BLOG HOME PAGE</title>
-	<meta name="description" content="<?= 'Tech Blog' ?>">
-	<meta property='og:title' content="TATB">
-	<meta property='og:url' content="<?= $_SERVER['PHP_SELF'] ?>">
-	<!-- <meta property='og:description' content="Tech Blog"> -->
-	<!-- <meta property='og:image' itemprop="image" content=""> -->
+	<meta name="description" content="<?= 'Tech Acoustic Tech Blog' ?>">
+	<meta property='og:title' content="TATB HOME">
+	<meta property='og:url' content="https://techac.net/tatb">
+	<meta property='og:image' itemprop="image" content="https://techac.net/tatb/assets/images/mike.jpg">
 	<meta property='keywords' content="Tech Acoustic, TA, TATB, Tech Blog, Tech, Science, Computers">
 	<!-- <meta property='og:locale' content="">
 	<meta property='og:type' content=""> -->
@@ -110,7 +109,7 @@ require_once "admin/functions/functions.php";
 	//require_once('includes/styleswitch.php')
 	?>
 
-<script id="dsq-count-scr" src="//techac-net-tatb.disqus.com/count.js" async></script>
+	<script id="dsq-count-scr" src="//techac-net-tatb.disqus.com/count.js" async></script>
 </body>
 
 </html>

@@ -15,10 +15,8 @@ if (isset($_SESSION['created']) && isset($_SESSION['minread'])) {
 
 <head>
 	<title><?= strtoupper(str_replace("-", " ", $_GET['title'])) ?></title>
-	<meta name="description" content="<?= 'Tech Blog' ?>">
-	<meta property='og:title' content="<?= strtoupper(str_replace("-", " ", $_GET['title'])) ?>">
+	<meta name="description" content="<?= 'Tech Acoustic Tech Blog' ?>">
 	<meta property='og:url' content="<?= 'https://techac.net/tatb/post.php' . '?id=' . $_GET['id'] . '&title=' . $_GET['title'] ?>;">
-	<!-- <meta property='og:description' content="Tech Blog"> -->
 	<meta property='og:image' itemprop="image" content="https://techac.net/tatb/blog_image/<?= getPostImage($_GET['id']) ?>">
 	<meta property='keywords' content="<?= loadKeywords($_GET['id']) ?>">
 	<!-- <meta property='og:locale' content="">
@@ -30,7 +28,7 @@ if (isset($_SESSION['created']) && isset($_SESSION['minread'])) {
 	<?php
 	require_once('includes/head.php');
 	?>
-	
+
 </head>
 
 
@@ -95,7 +93,7 @@ if (isset($_SESSION['created']) && isset($_SESSION['minread'])) {
 						var disqus_config = function() {
 							// Replace PAGE_URL with your page's canonical URL variable
 							<?= 'https://techac.net/tatb/post.php' . '?id=' . $_GET['id'] . '&title=' . $_GET['title'] ?>;
-							this.page.url = techac.net/tatb/post.php?id:<?= $_GET['id'] ?>;
+							this.page.url = techac.net / tatb / post.php ? id : <?= $_GET['id'] ?>;
 
 							// Replace PAGE_IDENTIFIER with your page's unique identifier variable
 							//this.page.identifier = <?= $_GET['id'] ?>;

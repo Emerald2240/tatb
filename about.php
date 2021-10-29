@@ -10,11 +10,10 @@ require_once "admin/functions/functions.php";
 
 	<!-- Meta -->
 	<title>ABOUT TA TECH BLOG</title>
-	<meta name="description" content="<?= 'Tech Blog' ?>">
-	<meta property='og:title' content="TATB">
-	<meta property='og:url' content="<?= $_SERVER['PHP_SELF'] ?>">
-	<!-- <meta property='og:description' content="Tech Blog"> -->
-	<!-- <meta property='og:image' itemprop="image" content="<?= 'blog_image/' . getPostImage($_GET['id']) ?>"> -->
+	<meta name="description" content="<?= 'Tech Acoustic Tech Blog' ?>">
+	<meta property='og:title' content="ABOUT ORJI MICHAEL">
+	<meta property='og:url' content="https://techac.net/tatb/about.php">
+	<meta property='og:image' itemprop="image" content="https://techac.net/tatb/assets/images/mike.jpg">
 	<meta property='keywords' content="Tech Acoustic, TA, TATB, Tech Blog, Tech, Science, Computers">
 	<!-- <meta property='og:locale' content="">
 	<meta property='og:type' content=""> -->
