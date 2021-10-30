@@ -19,3 +19,6 @@
 		line-break: auto;
 	}
 </style>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8230887621285431"
+     crossorigin="anonymous"></script>
