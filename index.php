@@ -8,7 +8,7 @@ require_once "admin/functions/functions.php";
 <head>
 	<title>TA TECH BLOG HOME PAGE</title>
 	<meta name="description" content="<?= 'Tech Acoustic Tech Blog' ?>">
-	<meta property='og:title' content="TATB HOME">
+	<!-- <meta property='og:title' content="TATB HOME"> -->
 	<meta property='og:url' content="https://techac.net/tatb">
 	<meta property='og:image' itemprop="image" content="https://techac.net/tatb/assets/images/mike.jpg">
 	<meta property='keywords' content="Tech Acoustic, TA, TATB, Tech Blog, Tech, Science, Computers">

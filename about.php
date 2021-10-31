@@ -11,7 +11,7 @@ require_once "admin/functions/functions.php";
 	<!-- Meta -->
 	<title>ABOUT TA TECH BLOG</title>
 	<meta name="description" content="<?= 'Tech Acoustic Tech Blog' ?>">
-	<meta property='og:title' content="ABOUT ORJI MICHAEL">
+	<!-- <meta property='og:title' content="ABOUT ORJI MICHAEL"> -->
 	<meta property='og:url' content="https://techac.net/tatb/about.php">
 	<meta property='og:image' itemprop="image" content="https://techac.net/tatb/assets/images/mike.jpg">
 	<meta property='keywords' content="Tech Acoustic, TA, TATB, Tech Blog, Tech, Science, Computers">

@@ -11,7 +11,7 @@ require_once "admin/functions/functions.php";
 	<!-- Meta -->
 	<title>TA TECH BLOG POSTS</title>
 	<meta name="description" content="<?= 'Tech Acoustic Tech Blog' ?>">
-	<meta property='og:title' content="TATB LATEST POSTS">
+	<!-- <meta property='og:title' content="TATB LATEST POSTS"> -->
 	<meta property='og:url' content="https://techac.net/tatb/blog-list.php?pag=<?= $_GET['pag'] ?>">
 	<meta property='og:image' itemprop="image" content="https://techac.net/tatb/assets/images/mike.jpg">
 	<!-- <meta property='og:image' itemprop="image" content="<?= 'https://techac.net/tatb/blog_image/' . getPostImage($_GET['id']) ?>"> -->
