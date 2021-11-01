@@ -1,6 +1,8 @@
 <?php
 require_once "admin/config/connect.php";
 require_once "admin/functions/functions.php";
+
+$datamissing =  processSubscriber($_POST);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,11 +17,11 @@ require_once "admin/functions/functions.php";
 	<!-- <meta property='og:locale' content="">
 	<meta property='og:type' content=""> -->
 
-	<!-- Meta -->
-	<meta name="author" content="Orji Michael Chukwuebuka at Tech Acoustic">
 	<?php
 	require_once('includes/head.php');
 	?>
+
+
 </head>
 
 <body>
@@ -31,10 +33,27 @@ require_once "admin/functions/functions.php";
 	</header>
 
 	<div class="main-wrapper">
+
 		<section class="cta-section theme-bg-light py-5">
 			<?php
-			require_once('includes/topbar.php')
+			//require_once('includes/topbar.php')
 			?>
+			<div class="container text-center">
+
+				<h2 class="heading">Tech for Everyone</h2>
+				<div class="intro ">
+					<p class="mb-3">Welcome to my blog. Subscribe to get notifications of my latest blog posts</p>
+					<?php if(isset($_POST['submit'])) { showDataMissing($datamissing, 1); }else{ showDataMissing($datamissing); } ?>
+					<form action="" method="post">
+						<div class="form-group">
+							<label class="sr-only" for="semail">Your email</label>
+							<input type="email" id="semail" name="semail" class="form-control mr-md-1 semail" placeholder="Enter email">
+						</div>
+						<button type="submit" name="submit" class="btn btn-primary">Subscribe</button>
+					</form>
+				</div>
+			</div>
+			<!--//container-->
 		</section>
 		<section class="blog-list px-3 py-5 p-md-5">
 			<div class="container">
@@ -110,6 +129,7 @@ require_once "admin/functions/functions.php";
 	?>
 
 	<script id="dsq-count-scr" src="//techac-net-tatb.disqus.com/count.js" async></script>
+
 </body>
 
 </html>

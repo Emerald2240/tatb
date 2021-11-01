@@ -150,7 +150,7 @@ function EditPost($id, $title, $bp, $tag, $imagename, $minread)
     mysqli_close($db);
 }
 
-function showDataMissing($datamissing)
+function showDataMissing($datamissing, $showSuccess = null)
 {
     //this function checks if the datamissing array passed in is empty. if it isnt it prints out all of its contents. if it is empty nothing happens
     if (isset($datamissing)) {
@@ -159,10 +159,10 @@ function showDataMissing($datamissing)
             echo $miss;
             echo '</p>';
         }
-        // } else {
-        //     echo '<p class="text-success">';
-        //     echo "Success";
-        //     echo '</p>';
+    } elseif(isset($showSuccess)) {
+        echo '<p class="text-success">';
+        echo "Successful";
+        echo '</p>';
     }
 }
 
@@ -314,6 +314,23 @@ function validateMailAddress($email)
 {
     global $db;
     $sql = "SELECT * FROM `admins` WHERE `email`='$email'";
+    $result = $db->query($sql);
+    if ($result->num_rows > 0) {
+        $result = $result->fetch_assoc();
+        if ($email == isset($result['email'])) {
+            return false;
+        } else {
+            return true;
+        }
+    } else {
+        return true;
+    }
+}
+
+function validateSubscriberMailAddress($email)
+{
+    global $db;
+    $sql = "SELECT * FROM `subscribers` WHERE `email`='$email'";
     $result = $db->query($sql);
     if ($result->num_rows > 0) {
         $result = $result->fetch_assoc();
@@ -599,7 +616,7 @@ function loadBlogPosts($newest = null, $pag = null)
             echo '<div class="intro">';
 
             //blog post intro
-            $string2 = substr($row['blog_post'], 0, 225). '...';
+            $string2 = substr($row['blog_post'], 0, 225) . '...';
             //echo $row['blog_post'];
             echo $string2;
             // echo 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies...';
@@ -615,7 +632,7 @@ function loadBlogPosts($newest = null, $pag = null)
             echo str_replace(" ", "-", strtolower($row['title']));
             echo '">Read more &rarr;</a>';
 
-            
+
             echo '</div>';
             echo '<!--//media-body-->';
 
@@ -676,34 +693,36 @@ function loadBlogPostTimeDetails($origDate = null)
 
         //how many hours ago
         elseif (($interval->h) > 0) {
-            if (($interval->h) == 1) {
-                echo $interval->h . " hour ago";
-            } else {
-                //if (($interval->h) <= 9) {
-                //  echo "Few hours ago";
-                // } else {
-                echo $interval->h . " hours ago";
-                //}
-            }
+            echo " today";
+
+            //if (($interval->h) == 1) {
+            // echo $interval->h . " today";
+            //} else {
+            //if (($interval->h) <= 9) {
+            //  echo "Few hours ago";
+            // } else {
+            // echo $interval->h . " hours ago";
+            //}
+            // }
         }
 
         //how many minutes ago
-        elseif (($interval->i) > 0) {
-            if (($interval->i) == 1) {
-                echo $interval->i . " minute ago";
-            } else {
-                echo $interval->i . " minutes ago";
-            }
-        }
+        // elseif (($interval->i) > 0) {
+        //     if (($interval->i) == 1) {
+        //         echo $interval->i . " minute ago";
+        //     } else {
+        //         echo $interval->i . " minutes ago";
+        //     }
+        // }
 
         //how many minutes ago
-        elseif (($interval->s) > 0) {
-            if (($interval->s) == 1) {
-                echo $interval->s . " second ago";
-            } else {
-                echo $interval->s . " seconds ago";
-            }
-        }
+        // elseif (($interval->s) > 0) {
+        //     if (($interval->s) == 1) {
+        //         echo $interval->s . " second ago";
+        //     } else {
+        //         echo $interval->s . " seconds ago";
+        //     }
+        // }
     }
 }
 
@@ -865,7 +884,6 @@ function getPrevTitle($id)
     }
 }
 
-
 function getPostImage($id)
 {
     global $db;
@@ -878,6 +896,42 @@ function getPostImage($id)
         if ($result) {
             while ($row = mysqli_fetch_array($result)) {
                 echo $row['imagename'];
+            }
+        }
+        // $total_visitors = mysqli_num_rows($result);
+    }
+}
+
+function getPostDate($id)
+{
+    global $db;
+
+    $query = "SELECT dateupdated FROM posts WHERE id = $id";
+    $result = mysqli_query($db, $query);
+    if (!$result) {
+        echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+    } else {
+        if ($result) {
+            while ($row = mysqli_fetch_array($result)) {
+                return $row['dateupdated'];
+            }
+        }
+        // $total_visitors = mysqli_num_rows($result);
+    }
+}
+
+function getPostTitle($id)
+{
+    global $db;
+
+    $query = "SELECT title FROM posts WHERE id = $id";
+    $result = mysqli_query($db, $query);
+    if (!$result) {
+        echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+    } else {
+        if ($result) {
+            while ($row = mysqli_fetch_array($result)) {
+                return $row['title'];
             }
         }
         // $total_visitors = mysqli_num_rows($result);
@@ -902,6 +956,69 @@ function loadKeywords($id)
             }
         }
         // $total_visitors = mysqli_num_rows($result);
+    }
+}
+
+function processSubscriber($formstream)
+{
+    //This function processes what user data is being stored and checks if they are accurate or entered at all.
+    //It also helps in confirming if what the user entered is Okay, like someone entering two different things in the password and confirm password box
+    extract($formstream);
+
+    if (isset($submit)) {
+
+        $datamissing = [];
+
+        //email address
+        if (empty($semail)) {
+            $datamissing['semail'] = "Please enter Email Address";
+        } else {
+            $semail = trim(Sanitize($semail));
+            if (!validateSubscriberMailAddress($semail)) {
+                $datamissing['semail'] = "Email already exists";
+            }
+        }
+
+        if (empty($datamissing)) {
+            addSubscriber($semail);
+            //return true;
+        } else {
+            return $datamissing;
+        }
+    }
+}
+
+function addSubscriber($email)
+{
+
+    //This simply adds the filtered and cleansed data into the database 
+    global $db;
+    $subscriber_ip = $_SERVER['REMOTE_ADDR'];
+    $sql = "INSERT INTO subscribers(  email,	ip 	) VALUES ('$email', '$subscriber_ip')";
+
+    if (mysqli_query($db, $sql)) {
+        //gotoPage('modal.php');
+        //echo '<script>modal.style.display = "block";</script>';
+        //echo 'var y;x = window.prompt("Please Enter the First Number");';
+
+    } else {
+        //echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+    }
+    //mysqli_close($db);
+}
+
+function getMessageInfo($id)
+{
+
+    switch ($id) {
+        case 1:
+            echo "SUCCESFULLY SUBSCRIBED";
+            break;
+        case 2:
+            echo 'PAGE NOT FOUND';
+            break;
+        default:
+            //echo '';
     }
 }
 //$splitedTopicsArray = explode(";", $topicsArray);

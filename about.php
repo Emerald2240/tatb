@@ -6,20 +6,15 @@ require_once "admin/functions/functions.php";
 <html lang="en">
 
 <head>
-	<title>TA Tech Blog</title>
-
 	<!-- Meta -->
-	<title>ABOUT TA TECH BLOG</title>
+	<title>ABOUT ORJI MICHAEL</title>
 	<meta name="description" content="<?= 'Tech Acoustic Tech Blog' ?>">
-	<!-- <meta property='og:title' content="ABOUT ORJI MICHAEL"> -->
+	<!-- <meta property='og:title' content=""> -->
 	<meta property='og:url' content="https://techac.net/tatb/about.php">
 	<meta property='og:image' itemprop="image" content="https://techac.net/tatb/assets/images/mike.jpg">
 	<meta property='keywords' content="Tech Acoustic, TA, TATB, Tech Blog, Tech, Science, Computers">
 	<!-- <meta property='og:locale' content="">
 	<meta property='og:type' content=""> -->
-
-	<!-- Meta -->
-	<meta name="author" content="Orji Michael Chukwuebuka at Tech Acoustic">
 
 	<?php
 	require_once('includes/head.php');
@@ -70,7 +65,7 @@ require_once "admin/functions/functions.php";
 					<a target="_blank" href="https://techac.net/tats">TA Tech Store</a>
 					<p>An online store for tech products and gadgets at very cheap prices (in progress).</p>
 					<!-- <p><strong>PHP | HTML5 | CSS3 | JavaScript | Bootstrap | JQuery | MySQL</strong></p> -->
-					<p>For more projects checkout my: <a target="_blank" href="https://techac.net/p">Portfolio<i class="fab fa-github-alt fa-fw"></i></a></p>
+					<p>For more projects checkout my: <a target="_blank" href="https://techac.net/tap/">Portfolio<i class="fab fa-github-alt fa-fw"></i></a></p>
 
 
 					<!-- <figure><a href="https://made4dev.com"><img class="img-fluid" src="assets/images/promo-banner.jpg" alt="image"></a></figure> -->

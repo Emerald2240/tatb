@@ -2,13 +2,7 @@
 require_once "admin/config/connect.php";
 require_once "admin/functions/functions.php";
 addCount($_GET['id']);
-if (isset($_SESSION['created']) && isset($_SESSION['minread'])) {
-	$created = $_SESSION['created'];
-	$minread = $_SESSION['minread'];
-} else {
-	$created = null;
-	$minread = null;
-}
+//$created = getPostDate($_GET['id']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +17,6 @@ if (isset($_SESSION['created']) && isset($_SESSION['minread'])) {
 	<meta property='og:type' content=""> -->
 
 	<!-- Meta -->
-	<meta name="author" content="Orji Michael Chukwuebuka at Tech Acoustic">
 
 	<?php
 	require_once('includes/head.php');
@@ -41,6 +34,7 @@ if (isset($_SESSION['created']) && isset($_SESSION['minread'])) {
 		?>
 	</header>
 
+	
 	<div class="main-wrapper">
 
 		<article class="blog-post px-3 py-5 p-md-5">
@@ -48,9 +42,11 @@ if (isset($_SESSION['created']) && isset($_SESSION['minread'])) {
 				<header class="blog-post-header">
 					<h2 class="title mb-2"><?= strtoupper(str_replace("-", " ", $_GET['title'])) ?></h2>
 					<div class="meta mb-3">
-						<span class="date"><?= loadBlogPostTimeDetails($created) ?> </span>
+						<span class="date"><?= loadBlogPostTimeDetails(getPostDate($_GET['id'])) ?> </span>
 						<span class="date"><i class="far fa-calendar-alt fa-fw"></i></span>
-						<span class="comment"><a href="post.php?id=<?= $_GET['id'] ?>&title=<?= $_GET['title'] ?>#disqus_thread"></a></span></div>
+						<span class="comment"><a href="post.php?id=<?= $_GET['id'] ?>&title=<?= $_GET['title'] ?>#disqus_thread"></a></span>
+					</div>
+					
 				</header>
 
 				<!-- blog post -->
@@ -69,11 +65,11 @@ if (isset($_SESSION['created']) && isset($_SESSION['minread'])) {
 				<nav class="blog-nav nav nav-justified my-5">
 
 					<?php if (getPrevId($_GET['id']) > 1) { ?>
-						<a class="nav-link-prev nav-item nav-link rounded-left" href="<?= $_SERVER['PHP_SELF'] ?>?id=<?= getPrevId($_GET['id']) ?>&title=<?= getPrevTitle($_GET['id']) ?>">Previous Post<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+						<a class="nav-link-prev nav-item nav-link rounded-left" href="<?= $_SERVER['PHP_SELF'] ?>?id=<?= getPrevId($_GET['id']) ?>&title=<?= getPrevTitle($_GET['id']) ?>"><?= ucwords(strtolower(getPostTitle(getPrevId($_GET['id'])))) ; ?><i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
 					<?php } ?>
 
 					<?php if (getNextId($_GET['id']) > 1) { ?>
-						<a class="nav-link-next nav-item nav-link rounded-right" href="<?= $_SERVER['PHP_SELF'] ?>?id=<?= getNextId($_GET['id']) ?>&title=<?= getNextTitle($_GET['id']) ?>">Next Post<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+						<a class="nav-link-next nav-item nav-link rounded-right" href="<?= $_SERVER['PHP_SELF'] ?>?id=<?= getNextId($_GET['id']) ?>&title=<?= getNextTitle($_GET['id']) ?>"><?= ucwords(strtolower(getPostTitle(getNextId($_GET['id'])))); ?><i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
 					<?php } ?>
 
 				</nav>

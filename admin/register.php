@@ -25,13 +25,18 @@ if (isset($_SESSION['editpost'])) {
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<title>REGISTER ADMIN</title>
+	<meta name="description" content="<?= 'Admin Registration' ?>">
+	<!-- <meta property='og:title' content="TATB HOME"> -->
+	<meta property='og:url' content="https://techac.net/tatb">
+	<!-- <meta property='og:image' itemprop="image" content="https://techac.net/tatb/assets/images/mike.jpg"> -->
+	<meta property='keywords' content="Admin, Register, Tech Acoustic, TA, TATB, Tech Blog, Tech, Science, Computers">
+	<!-- <meta property='og:locale' content="">
+	<meta property='og:type' content=""> -->
 
-    <title>Admin Register</title>
+	<!-- Meta -->
+	<meta name="author" content="Orji Michael Chukwuebuka at Tech Acoustic">
+	
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

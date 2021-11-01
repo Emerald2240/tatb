@@ -13,6 +13,16 @@ if (!isset($_SESSION['log'])) {
     <?php
     require_once('includes/head.php');
     ?>
+
+<title>TA TECH BLOG ADMIN HOME PAGE</title>
+	<meta name="description" content="<?= 'Tech Acoustic Tech Blog ADMIN HOME' ?>">
+	<!-- <meta property='og:title' content="TATB HOME"> -->
+	<meta property='og:url' content="https://techac.net/tatb">
+	<!-- <meta property='og:image' itemprop="image" content="https://techac.net/tatb/assets/images/mike.jpg"> -->
+	<meta property='keywords' content="Admin, home, Tech Acoustic, TA, TATB, Tech Blog, Tech, Science, Computers">
+	<!-- <meta property='og:locale' content="">
+	<meta property='og:type' content=""> -->
+	
 </head>
 
 <body id="page-top">

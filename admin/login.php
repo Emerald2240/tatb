@@ -12,14 +12,14 @@ $datamissing =  processLogin($_POST);
 <html lang="en">
 
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Admin Login</title>
+    <title>TA TECH BLOG LOGIN PAGE</title>
+	<meta name="description" content="<?= 'Login to Tech Acoustic Tech Blog' ?>">
+	<!-- <meta property='og:title' content="TATB HOME"> -->
+	<meta property='og:url' content="https://techac.net/tatb">
+	<!-- <meta property='og:image' itemprop="image" content="https://techac.net/tatb/assets/images/mike.jpg"> -->
+	<meta property='keywords' content="Tech Acoustic, TA, TATB, Tech Blog, Tech, Science, Computers">
+	<!-- <meta property='og:locale' content="">
+	<meta property='og:type' content=""> -->	
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -27,7 +27,6 @@ $datamissing =  processLogin($_POST);
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
 </head>
 
 <body class="bg-gradient-primary">

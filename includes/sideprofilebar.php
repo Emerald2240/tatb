@@ -16,7 +16,8 @@
 				<li class="list-inline-item"><a target="_blank" href="https://twitter.com/Michelson_Java"><i class="fab fa-twitter fa-fw"></i></a></li>
 				<li class="list-inline-item"><a target="_blank" href="https://www.linkedin.com/in/michael-orji-1274b1220/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
 				<li class="list-inline-item"><a target="_blank" href="github.com/emerald2240"><i class="fab fa-github-alt fa-fw"></i></a></li>
-				<li class="list-inline-item"><a target="_blank" href="#"><i class="fab fa-stack-overflow fa-fw"></i></a></li>
+				<li class="list-inline-item"><a href="https://stackoverflow.com/users/12425371/emerald-inc">
+<i class="fab fa-stack-overflow fa-fw"></i></a></li>
 				<li class="list-inline-item"><a target="_blank" href="#"><i class="fab fa-codepen fa-fw"></i></a></li>
 			</ul>
 			<!--//social-list-->

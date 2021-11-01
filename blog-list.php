@@ -6,10 +6,8 @@ require_once "admin/functions/functions.php";
 <html lang="en">
 
 <head>
-	<title>TA Tech Blog</title>
-
 	<!-- Meta -->
-	<title>TA TECH BLOG POSTS</title>
+	<title>TA TECH BLOG LATEST POSTS</title>
 	<meta name="description" content="<?= 'Tech Acoustic Tech Blog' ?>">
 	<!-- <meta property='og:title' content="TATB LATEST POSTS"> -->
 	<meta property='og:url' content="https://techac.net/tatb/blog-list.php?pag=<?= $_GET['pag'] ?>">
@@ -18,9 +16,6 @@ require_once "admin/functions/functions.php";
 	<meta property='keywords' content="Tech Acoustic, TA, TATB, Tech Blog, Tech, Science, Computers">
 	<!-- <meta property='og:locale' content="">
 	<meta property='og:type' content=""> -->
-
-	<!-- Meta -->
-	<meta name="author" content="Orji Michael Chukwuebuka at Tech Acoustic">
 
 	<?php
 	require_once('includes/head.php');
