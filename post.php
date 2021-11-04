@@ -34,7 +34,7 @@ addCount($_GET['id']);
 		?>
 	</header>
 
-	
+
 	<div class="main-wrapper">
 
 		<article class="blog-post px-3 py-5 p-md-5">
@@ -46,7 +46,7 @@ addCount($_GET['id']);
 						<span class="date"><i class="far fa-calendar-alt fa-fw"></i></span>
 						<span class="comment"><a href="post.php?id=<?= $_GET['id'] ?>&title=<?= $_GET['title'] ?>#disqus_thread"></a></span>
 					</div>
-					
+
 				</header>
 
 				<!-- blog post -->
@@ -57,6 +57,13 @@ addCount($_GET['id']);
 					loadBlogPost($_GET['id']);
 
 					?>
+					<div>
+						<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8230887621285431" crossorigin="anonymous"></script>
+						<ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-8230887621285431" data-ad-slot="5837351353"></ins>
+						<script>
+							(adsbygoogle = window.adsbygoogle || []).push({});
+						</script>
+					</div>
 
 				</div>
 				<!-- blogpost end -->
@@ -65,7 +72,7 @@ addCount($_GET['id']);
 				<nav class="blog-nav nav nav-justified my-5">
 
 					<?php if (getPrevId($_GET['id']) > 1) { ?>
-						<a class="nav-link-prev nav-item nav-link rounded-left" href="<?= $_SERVER['PHP_SELF'] ?>?id=<?= getPrevId($_GET['id']) ?>&title=<?= getPrevTitle($_GET['id']) ?>"><?= ucwords(strtolower(getPostTitle(getPrevId($_GET['id'])))) ; ?><i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+						<a class="nav-link-prev nav-item nav-link rounded-left" href="<?= $_SERVER['PHP_SELF'] ?>?id=<?= getPrevId($_GET['id']) ?>&title=<?= getPrevTitle($_GET['id']) ?>"><?= ucwords(strtolower(getPostTitle(getPrevId($_GET['id'])))); ?><i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
 					<?php } ?>
 
 					<?php if (getNextId($_GET['id']) > 1) { ?>
@@ -117,6 +124,17 @@ addCount($_GET['id']);
 				</div>
 				<!--//blog-comments-section-->
 
+				<div><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8230887621285431"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-8230887621285431"
+     data-ad-slot="5837351353"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
 			</div>
 			<!--//container-->
 		</article>

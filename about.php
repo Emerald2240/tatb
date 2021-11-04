@@ -41,6 +41,16 @@ require_once "admin/functions/functions.php";
 				<p>I love playing video games, sports, Watching action movies, Petting animals, the great outdoors...</p>
 				<p>I studied Computer Engineering at Enugu State University of Science and Technology(ESUT). I started proffessional programming in 2018 and currently have experience in over 7 programming languages, frameworks and API's....</p>
 				<figure><img class="img-fluid" src="assets/images/about-me.jpg" alt="image"></figure>
+				<div>
+					<div>
+						<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8230887621285431" crossorigin="anonymous"></script>
+						<!-- general horizontal -->
+						<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8230887621285431" data-ad-slot="3304178043" data-ad-format="auto" data-full-width-responsive="true"></ins>
+						<script>
+							(adsbygoogle = window.adsbygoogle || []).push({});
+						</script>
+					</div>
+				</div>
 				<h5 class="mt-5">About The Blog</h5>
 				<p>The blog was made from the need for tech and tech concepts to be understood by all, not just a select few. I do my best to break down tech topics as a way to educate others and learn as well.</p>
 				<h5 class="mt-5">My Skills and Experiences</h5>
@@ -49,26 +59,41 @@ require_once "admin/functions/functions.php";
 					I am also a student of Computer Engineering ESUT, a University based in Nigeria. At the time of writing this i'm in my final year.<br>
 					I'm also a computer hardware specialist, having lots of knowledge on the different parts of the computer and replacing/fixing them if necessary with extensive knowledge in software installation and troubleshooting as well.
 
-					<h5 class="mt-5">Side Projects</h5>
-					<a target="_blank" href="https://Techac.net/apps">TA List</a>
-					<p>An android app used for creating lists.</P>
-					<!-- <p><strong>Java | Android Studio</strong></P> -->
+				<div>
+					<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8230887621285431" crossorigin="anonymous"></script>
+					<!-- general horizontal -->
+					<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8230887621285431" data-ad-slot="3304178043" data-ad-format="auto" data-full-width-responsive="true"></ins>
+					<script>
+						(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+				</div>
+				<h5 class="mt-5">Side Projects</h5>
+				<a target="_blank" href="https://Techac.net/apps">TA List</a>
+				<p>An android app used for creating lists.</P>
+				<!-- <p><strong>Java | Android Studio</strong></P> -->
 
-					<a target="_blank" href="https://Techac.net/tapq">TA Past Questions, ESUT</a>
-					<p>Records past exam questions and incorporates database functions with them, so as to make it easier for students to prepare.</p>
-					<!-- <p><strong>PHP | HTML5 | CSS3 | JavaScript | Bootstrap | JQuery | MySQL</strong></p> -->
+				<a target="_blank" href="https://Techac.net/tapq">TA Past Questions, ESUT</a>
+				<p>Records past exam questions and incorporates database functions with them, so as to make it easier for students to prepare.</p>
+				<!-- <p><strong>PHP | HTML5 | CSS3 | JavaScript | Bootstrap | JQuery | MySQL</strong></p> -->
 
-					<a target="_blank" href="https://techac.net/tatb">Tech Blog</a>
-					<p>I discuss the most useful topics relating to technology. Our aim is to make tech and tech concepts easy for everyone to understand.</p>
-					<!-- <p><strong>PHP | HTML5 | CSS3 | JavaScript | Bootstrap | JQuery | MySQL</strong></p> -->
+				<a target="_blank" href="https://techac.net/tatb">Tech Blog</a>
+				<p>I discuss the most useful topics relating to technology. Our aim is to make tech and tech concepts easy for everyone to understand.</p>
+				<!-- <p><strong>PHP | HTML5 | CSS3 | JavaScript | Bootstrap | JQuery | MySQL</strong></p> -->
 
-					<a target="_blank" href="https://techac.net/tats">TA Tech Store</a>
-					<p>An online store for tech products and gadgets at very cheap prices (in progress).</p>
-					<!-- <p><strong>PHP | HTML5 | CSS3 | JavaScript | Bootstrap | JQuery | MySQL</strong></p> -->
-					<p>For more projects checkout my: <a target="_blank" href="https://techac.net/tap/">Portfolio<i class="fab fa-github-alt fa-fw"></i></a></p>
+				<a target="_blank" href="https://techac.net/tats">TA Tech Store</a>
+				<p>An online store for tech products and gadgets at very cheap prices (in progress).</p>
+				<!-- <p><strong>PHP | HTML5 | CSS3 | JavaScript | Bootstrap | JQuery | MySQL</strong></p> -->
+				<p>For more projects checkout my: <a target="_blank" href="https://techac.net/tap/">Portfolio<i class="fab fa-github-alt fa-fw"></i></a></p>
 
-
-					<!-- <figure><a href="https://made4dev.com"><img class="img-fluid" src="assets/images/promo-banner.jpg" alt="image"></a></figure> -->
+				<div>
+					<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8230887621285431" crossorigin="anonymous"></script>
+					<!-- general horizontal -->
+					<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8230887621285431" data-ad-slot="3304178043" data-ad-format="auto" data-full-width-responsive="true"></ins>
+					<script>
+						(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+				</div>
+				<!-- <figure><a href="https://made4dev.com"><img class="img-fluid" src="assets/images/promo-banner.jpg" alt="image"></a></figure> -->
 			</div>
 		</article>
 		<!--//about-section-->

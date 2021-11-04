@@ -43,7 +43,11 @@ $datamissing =  processSubscriber($_POST);
 				<h2 class="heading">Tech for Everyone</h2>
 				<div class="intro ">
 					<p class="mb-3">Welcome to my blog. Subscribe to get notifications of my latest blog posts</p>
-					<?php if(isset($_POST['submit'])) { showDataMissing($datamissing, 1); }else{ showDataMissing($datamissing); } ?>
+					<?php if (isset($_POST['submit'])) {
+						showDataMissing($datamissing, 1);
+					} else {
+						showDataMissing($datamissing);
+					} ?>
 					<form action="" method="post">
 						<div class="form-group">
 							<label class="sr-only" for="semail">Your email</label>
@@ -64,6 +68,14 @@ $datamissing =  processSubscriber($_POST);
 					loadBlogPosts(null, $_GET['pag']);
 				}
 				?>
+				<div>
+					<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8230887621285431" crossorigin="anonymous"></script>
+					<!-- general horizontal -->
+					<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8230887621285431" data-ad-slot="3304178043" data-ad-format="auto" data-full-width-responsive="true"></ins>
+					<script>
+						(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+				</div>
 				<!-- <div class="item mb-5">
 					<div class="media">
 						<img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="assets/images/blog/blog-post-thumb-1.jpg" alt="image">
@@ -106,6 +118,16 @@ $datamissing =  processSubscriber($_POST);
 						<a class="nav-link-next nav-item nav-link rounded-right" href="index.php?pag=20">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
 					<?php } ?>
 				</nav>
+				<div>
+					<div>
+						<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8230887621285431" crossorigin="anonymous"></script>
+						<!-- general horizontal -->
+						<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8230887621285431" data-ad-slot="3304178043" data-ad-format="auto" data-full-width-responsive="true"></ins>
+						<script>
+							(adsbygoogle = window.adsbygoogle || []).push({});
+						</script>
+					</div>
+				</div>
 
 			</div>
 		</section>
