@@ -102,6 +102,7 @@ if (isset($_SESSION['editpost'])) {
                                     <label for="bp">Blog Post</label>
                                     <!-- <div id="editor" class="edit"></div>
         <input type="text" name="rbp" id="editor" class="invisible"> -->
+        <p>To add code to the text or change classes, just click source after your done and submit. if you undo source before submitting, the changes you make will be removed</p>
                                     <textarea name="bp" id="editor">
                                         <?php if (isset($_GET['edit']) && $_GET['edit'] == 1) {
                                             adminLoadBlogPost($_GET['id']);

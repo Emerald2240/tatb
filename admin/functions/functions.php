@@ -159,7 +159,7 @@ function showDataMissing($datamissing, $showSuccess = null)
             echo $miss;
             echo '</p>';
         }
-    } elseif(isset($showSuccess)) {
+    } elseif (isset($showSuccess)) {
         echo '<p class="text-success">';
         echo "Successful";
         echo '</p>';
@@ -1021,4 +1021,169 @@ function getMessageInfo($id)
             //echo '';
     }
 }
+
+function advancedPostSearch($formstream)
+{
+    //$conn = mysqli_connect("localhost", "root", "", "blog_samples");
+    global $db;
+    extract($formstream);
+
+    // search modes
+    $with_any_one_of = "";
+    $with_the_exact_of = "";
+    $without = "";
+    $starts_with = "";
+    $search_in = "";
+    $advance_search_submit = "";
+    $queryCondition = "";
+
+    //if search box is not empty
+    if (!empty($search)) {
+
+        //if stype is not empty keep going
+        if (!empty($stype)) {
+            //$queryCases = array("with_any_one_of", "with_the_exact_of", "without", "starts_with");
+            //if stype is not equals to 0 then the option is anything but advanced search
+            if ($stype != 0) {
+                if (!empty($queryCondition)) {
+                    $queryCondition .= " AND ";
+                } else {
+                    $queryCondition .= " WHERE ";
+                }
+            }
+
+            switch ($stype) {
+                    //with_any_one_of
+                case 1:
+                    $wordsAry = explode(" ", $search);
+                    $wordsCount = count($wordsAry);
+                    for ($i = 0; $i < $wordsCount; $i++) {
+
+                        $queryCondition .= "title LIKE '%" . $wordsAry[$i] . "%' OR tags LIKE '%" . $wordsAry[$i] . "%'";
+
+                        if ($i != $wordsCount - 1) {
+                            $queryCondition .= " OR ";
+                        }
+                    }
+                    break;
+
+                    //with_the_exact_of
+                case 2:
+                    $queryCondition .= "title LIKE '" . $search . "%' OR tags LIKE '%" . $search . "%'";
+                    break;
+
+                    //without
+                case 3:
+                    $queryCondition .= "title NOT LIKE '%" . $search . "%' AND tags NOT LIKE '%" . $search . "%'";
+                    break;
+
+                    // starts with
+                case 4:
+                    $queryCondition .= "title LIKE '" . $search . "%' OR tags LIKE '%" . $search . "%'";
+                    break;
+            }
+        }
+    }
+    $orderby = " ORDER BY id desc";
+    //echo $queryCondition;
+    $sql = "SELECT * FROM posts " . $queryCondition;
+    // $result = mysqli_query($db, $sql);
+
+    $checker = null;
+    $response = @mysqli_query($db, $sql);
+    if ($response) {
+        while ($row = mysqli_fetch_array($response)) {
+            $checker = $row['id'];
+
+            echo '<div class="item mb-5">';
+            echo '<div class="media">';
+            echo '<img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="blog_images/';
+
+            //blog image
+            echo $row['imagename'];
+
+            echo '" alt="';
+
+            //blog image alt text
+            echo $row['title'] . ' image';
+
+
+            echo '">';
+            echo '<div class="media-body">';
+            echo '<h3 class="title mb-1"><a href="post.php?id=';
+            echo $row['id'];
+            echo '&title=';
+            echo str_replace(" ", "-", strtolower($row['title']));
+            //echo '#disqus_thread';
+            echo '">';
+
+            //blog title
+            //$string = substr($row['title'], 0, 25) . "...";
+            echo strtoupper($row['title']);
+            //echo 'A Guide to Becoming a Full-Stack Developer';
+
+            echo '</a></h3>';
+            echo '<div class="meta mb-1"><span class="date">';
+
+            //$origDate = new DateTime($row['dateupdated']);
+
+            LoadBlogPostTimeDetails($row['dateupdated']);
+
+
+            //echo 'Published 3 months ago';
+
+            echo '</span><span class="time">';
+
+            //how long it takes to read in minutes
+            echo $row['minread'] . " min read";
+
+            echo '</span><span class="comment"><a href="post.php?id=';
+
+            //How many comments
+            echo $row['id'];
+            echo '&title=';
+            echo str_replace(" ", "-", strtolower($row['title']));
+            echo '#disqus_thread';
+            echo '">';
+            //echo 'Comments';
+            echo '</a></span></div>';
+            echo '<div class="intro">';
+
+            //blog post intro
+            $string2 = substr($row['blog_post'], 0, 225) . '...';
+            //echo $row['blog_post'];
+            echo $string2;
+            // echo 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies...';
+
+            echo '</div>';
+            echo '<a class="more-link" href="';
+
+            //blog post link
+            echo 'post.php?id=';
+            //blog post id and title
+            echo $row['id'];
+            echo '&title=';
+            echo str_replace(" ", "-", strtolower($row['title']));
+            echo '">Read more &rarr;</a>';
+
+
+            echo '</div>';
+            echo '<!--//media-body-->';
+
+            echo '</div>';
+            echo '<!--//media-->';
+            echo '</div>';
+            echo '<!--//item-->';
+        }
+        if ($checker == null) {
+            echo '<p>Not found</p>';
+        }
+    } else {
+        //echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+    }
+}
 //$splitedTopicsArray = explode(";", $topicsArray);
+
+
+
+
