@@ -1,20 +1,5 @@
 <?php
 
-//Import PHPMailer classes into the global namespace
-//These must be at the top of your script, not inside a function 
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-
-//Load Composer's autoloader 
-// require 'vendor/autoload.php';
-
-require 'vendor/PHPMailer/src/Exception.php';
-require 'vendor/PHPMailer/src/PHPMailer.php';
-require 'vendor/PHPMailer/src/SMTP.php';
-
-
 require_once "config/connect.php";
 require_once "functions/functions.php";
 
@@ -28,79 +13,24 @@ if (!isset($_SESSION['log'])) {
 if (isset($_POST['submit'])) {
     if (validateMailAddress($_POST['email']) == false) {
 ?>
-        <?php
-        //Create an instance; passing `true` enables exceptions 
-        $mail = new PHPMailer(true);
-        try {
-            //Server settings 
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        
+        <?PHP
+$sender = 'mike@mail.com';
+$recipient = 'orjimichael4886@gmail.com';
 
-            //Enable verbose debug output 
-            $mail->isSMTP();
+$subject = "php mail test";
+$emessage = "php test message";
+$headers = 'From:' . $sender;
 
-            //Send using SMTP 
-            $mail->Host = 'smtp.gmail.com';
-
-            //Set the SMTP server to send through 
-            $mail->SMTPAuth = true;
-
-            //Enable SMTP authentication
-            $mail->Username = 'techctwn@techac.net';
-
-            //SMTP username 
-            $mail->Password = 'Emerald2240';
-
-            //SMTP password 
-            //$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-
-            //Enable implicit TLS encryption 
-            $mail->Port = 465;
-
-            //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-            //Recipients 
-            $mail->setFrom('orjimichael4886@gmail.com', 'Tech Acoustic');
-            $mail->addAddress('orjimichael4886@gmail.com', 'Tech Acoustic');
-
-            //Add a recipient 
-            //$mail->addAddress('ellen@example.com');
-
-            //Name is optional 
-            $mail->addReplyTo('no-replyinfo@example.com', 'Information');
-            //$mail->addCC('cc@example.com');
-            //$mail->addBCC('bcc@example.com');
-
-            //Attachments 
-            //$mail->addAttachment('/var/tmp/file.tar.gz');
-
-            //Add attachments
-            //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');
-
-            //Optional name //Content 
-            $mail->isHTML(true);
-
-            //Set email format to HTML 
-            $code = uniqid(true);
-            addNewResetData($code, $_POST['email']);
-
-            $url = "http://" . $_SERVER["HTTP_HOST"] . dirname($_SERVER["PHP_SELF"] . "/setnewpass.php?code=" . $code);
-            $mail->Subject = 'Here is the subject';
-            $mail->Body = '
-    <h1>You requested a password reset link</h1>
-    Click <a href="' . $url . '">this link to do so</a>';
-            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-            $mail->send();
-
-            addNewResetData($code, $_POST['email']);
-            $message = '<p class="text-success">Reset link has been sent to your email address.</p>';
-        } catch (Exception $e) {
-            $message = '<p class="text-danger">Reset link could not be sent, an error has occured</p>';
-
-            //echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-        }
-        //$datamissing =  processLogin($_POST);
-
-        ?>
-
+if (mail($recipient, $subject, $emessage, $headers))
+{
+    $message = '<p class="text-success">Message accepted</p>';
+}
+else
+{
+    $message = '<p class="text-danger">Error: Message not accepted</p>';
+}
+?>
 
 <?php } else {
         $message = '<p class="text-warning">Your account does not exist.</p>';
