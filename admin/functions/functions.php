@@ -24,6 +24,7 @@ function Sanitize($data, $case = null)
     return $result;
 }
 
+//this collects and prepares all the data entered for a new post for storage
 function processNewPost($formstream, $editId = null)
 {
     //This function processes what user data is being stored and checks if they are accurate or entered at all.
@@ -116,6 +117,7 @@ function processNewPost($formstream, $editId = null)
     }
 }
 
+//adds the prepared data into the database
 function AddPost($title, $bp, $tag, $imagename, $minread)
 {
     //This simply adds the filtered and cleansed data into the database 
@@ -150,6 +152,7 @@ function EditPost($id, $title, $bp, $tag, $imagename, $minread)
     mysqli_close($db);
 }
 
+//shows all the entries in the datamissing array or just a success message if everything went well
 function showDataMissing($datamissing, $showSuccess = null)
 {
     //this function checks if the datamissing array passed in is empty. if it isnt it prints out all of its contents. if it is empty nothing happens
@@ -260,6 +263,7 @@ function loadPosts()
     //}
 }
 
+//loads the blog post into a text input while editing 
 function adminLoadBlogPost($id)
 {
     global $db;
@@ -310,6 +314,7 @@ function deletePost($id)
     mysqli_close($db);
 }
 
+//checks if the input mail exists in the admins database. if it exists return false, if not return true
 function validateMailAddress($email)
 {
     global $db;
@@ -318,15 +323,19 @@ function validateMailAddress($email)
     if ($result->num_rows > 0) {
         $result = $result->fetch_assoc();
         if ($email == isset($result['email'])) {
+            //echo 'email exists';
             return false;
         } else {
+            //echo 'email doesnt exist';
             return true;
         }
     } else {
+        //echo 'email definitely doesnt exist';
         return true;
     }
 }
 
+//checks if the input mail exists in the subscribers database, if it exists return false, if not return true
 function validateSubscriberMailAddress($email)
 {
     global $db;
@@ -528,6 +537,96 @@ function processLogin($formstream)
             return $datamissing;
         }
     }
+}
+
+function validateResetCode($code)
+{
+    global $db;
+    $sql = "SELECT * FROM `resetpassword` WHERE `code`='$code'";
+    $result = $db->query($sql);
+    if ($result->num_rows > 0) {
+        $result = $result->fetch_assoc();
+        if ($code == isset($result['code'])) {
+            //echo 'code exists';
+            $_SESSION['resetMail'] = $result['email'];
+            return true;
+        } else {
+            //echo 'code doesnt exist';
+            return false;
+        }
+    } else {
+        //echo 'code definitely doesnt exist';
+        return false;
+    }
+}
+
+function addNewResetData($code, $email)
+{
+
+    //This simply adds the filtered and cleansed data that is edited into the database 
+    global $db;
+    $sql = "INSERT INTO resetpassword(  	email, 	code 	) VALUES ('$email', '$code')";
+    //$sql = "INSERT INTO posts(title, 	blog_post, 	imagename,	minread, 	tags 	) VALUES ('$title', '$bp', '$imagename', '$minread', '$tag')";
+
+    if (mysqli_query($db, $sql)) {
+        //gotoPage("login.php");
+    } else {
+        //echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+    }
+    mysqli_close($db);
+}
+
+function ResetPassword($formstream)
+{
+    extract($formstream);
+
+    if (isset($submit)) {
+
+        $datamissing = [];
+
+        if (empty($pass1)) {
+            $datamissing['password'] = "Missing Password";
+        } else {
+            $password = trim(Sanitize($pass1));
+        }
+
+        if (empty($pass2)) {
+            $datamissing['password2'] = "Missing Confirm Password";
+        } else {
+            $password1 = trim(Sanitize($pass2));
+            if ($password != $password1) {
+                $datamissing['confpass'] = "Password Mismatch";
+            } else {
+                // $password1 = trim(Sanitize($password1));
+                $password = sha1($password);
+            }
+        }
+
+        if (empty($datamissing)) {
+            setNewPassword($_SESSION['resetMail'], $password);
+            //addRegistered($firstname, $lastname, $email, $password, $facebook, $twitter, $linkedin, $instagram);
+        } else {
+            return $datamissing;
+        }
+    }
+}
+
+function setNewPassword($email, $password)
+{
+    //This simply adds the filtered and cleansed data that is edited into the database 
+    global $db;
+    $sql = "UPDATE `admins` SET `password` = '$password' WHERE `admins`.`email` = $email";
+    //$sql = "INSERT INTO posts(title, 	blog_post, 	imagename,	minread, 	tags 	) VALUES ('$title', '$bp', '$imagename', '$minread', '$tag')";
+    $sql2 = "DELETE FROM `resetpassword`  WHERE resetpassword.email = '$email' ";
+
+    if (mysqli_query($db, $sql)) {
+        if (mysqli_query($db, $sql2)) {
+            gotoPage("login.php");
+        }
+    } else {
+        //echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+    }
+    mysqli_close($db);
 }
 
 
@@ -758,6 +857,7 @@ function loadBlogPost($id)
     }
 }
 
+//adds a count when a new reader checks out a new post
 function addCount($id, $ip = null)
 {
     global $db;
@@ -804,6 +904,7 @@ function loadTotalVisitorCount()
     //return $total_visitors;
 }
 
+//checks how many posts are available
 function loadPostCount()
 {
     global $db;
@@ -812,6 +913,7 @@ function loadPostCount()
     return mysqli_num_rows($result);
 }
 
+//get the id of the next sequential post
 function getNextId($id)
 {
     global $db;
@@ -830,6 +932,7 @@ function getNextId($id)
     }
 }
 
+//get title of the next sequential post
 function getNextTitle($id)
 {
     global $db;
@@ -848,6 +951,7 @@ function getNextTitle($id)
     }
 }
 
+//gets id of the previous sequential post
 function getPrevId($id)
 {
     global $db;
@@ -866,6 +970,7 @@ function getPrevId($id)
     }
 }
 
+//get title of the previous sequential post
 function getPrevTitle($id)
 {
     global $db;
@@ -1022,6 +1127,7 @@ function getMessageInfo($id)
     }
 }
 
+//search for posts with different methods
 function advancedPostSearch($formstream)
 {
     //$conn = mysqli_connect("localhost", "root", "", "blog_samples");
@@ -1183,7 +1289,3 @@ function advancedPostSearch($formstream)
     }
 }
 //$splitedTopicsArray = explode(";", $topicsArray);
-
-
-
-

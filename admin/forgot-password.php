@@ -1,31 +1,58 @@
 <?php
+
 require_once "config/connect.php";
 require_once "functions/functions.php";
 
 if (!isset($_SESSION['log'])) {
-    gotoPage("index.php");
+    //gotoPage("index.php");
 }
-
-$datamissing =  processLogin($_POST);
 ?>
+
+
+<?php
+if (isset($_POST['submit'])) {
+    if (validateMailAddress($_POST['email']) == false) {
+?>
+        
+        <?PHP
+$sender = 'mike@mail.com';
+$recipient = 'orjimichael4886@gmail.com';
+
+$subject = "php mail test";
+$message = "php test message";
+$headers = 'From:' . $sender;
+
+if (mail($recipient, $subject, $message, $headers))
+{
+    echo "Message accepted";
+}
+else
+{
+    echo "Error: Message not accepted";
+}
+?>
+
+<?php } else {
+        $message = '<p class="text-warning">Your account does not exist.</p>';
+    }
+} ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>TA TECH BLOG FORGOT PASSWORD</title>
-	<meta name="description" content="<?= 'Tech Acoustic Tech Blog' ?>">
-	<!-- <meta property='og:title' content="TATB HOME"> -->
-	<meta property='og:url' content="https://techac.net/tatb">
-	<meta property='og:image' itemprop="image" content="https://techac.net/tatb/assets/images/mike.jpg">
-	<meta property='keywords' content="Tech Acoustic, TA, TATB, Tech Blog, Tech, Science, Computers">
-	<!-- <meta property='og:locale' content="">
+    <title>TA TECH BLOG FORGOT PASSWORD</title>
+    <meta name="description" content="<?= 'Tech Acoustic Tech Blog' ?>">
+    <!-- <meta property='og:title' content="TATB HOME"> -->
+    <meta property='og:url' content="https://techac.net/tatb">
+    <meta property='og:image' itemprop="image" content="https://techac.net/tatb/assets/images/mike.jpg">
+    <meta property='keywords' content="Tech Acoustic, TA, TATB, Tech Blog, Tech, Science, Computers">
+    <!-- <meta property='og:locale' content="">
 	<meta property='og:type' content=""> -->
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -53,20 +80,19 @@ $datamissing =  processLogin($_POST);
                                         <p class="mb-4">We get it, stuff happens. Just enter your email address below
                                             and we'll send you a link to reset your password!</p>
                                     </div>
-                                    <form class="user">
+                                    <?php if (isset($_POST['submit'])) {
+                                        //echo $message;
+                                    } ?>
+                                    <form class="user" action="" method="post">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                            <input required type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
                                         </div>
-                                        <a href="login.html" class="btn btn-primary btn-user btn-block">
-                                            Reset Password
-                                        </a>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block" id="submit" name="submit">Reset Password</button>
                                     </form>
                                     <hr>
-                                    <div class="text-center">
+                                    <!-- <div class="text-center">
                                         <a class="small" href="register.html">Create an Account!</a>
-                                    </div>
+                                    </div> -->
                                     <div class="text-center">
                                         <a class="small" href="login.html">Already have an account? Login!</a>
                                     </div>

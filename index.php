@@ -4,6 +4,11 @@ require_once "admin/functions/functions.php";
 
 $datamissing =  processSubscriber($_POST);
 ?>
+
+<?php 
+ ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 

@@ -13,13 +13,13 @@ $datamissing =  processLogin($_POST);
 
 <head>
     <title>TA TECH BLOG LOGIN PAGE</title>
-	<meta name="description" content="<?= 'Login to Tech Acoustic Tech Blog' ?>">
-	<!-- <meta property='og:title' content="TATB HOME"> -->
-	<meta property='og:url' content="https://techac.net/tatb">
-	<!-- <meta property='og:image' itemprop="image" content="https://techac.net/tatb/assets/images/mike.jpg"> -->
-	<meta property='keywords' content="Tech Acoustic, TA, TATB, Tech Blog, Tech, Science, Computers">
-	<!-- <meta property='og:locale' content="">
-	<meta property='og:type' content=""> -->	
+    <meta name="description" content="<?= 'Login to Tech Acoustic Tech Blog' ?>">
+    <!-- <meta property='og:title' content="TATB HOME"> -->
+    <meta property='og:url' content="https://techac.net/tatb">
+    <!-- <meta property='og:image' itemprop="image" content="https://techac.net/tatb/assets/images/mike.jpg"> -->
+    <meta property='keywords' content="Tech Acoustic, TA, TATB, Tech Blog, Tech, Science, Computers">
+    <!-- <meta property='og:locale' content="">
+	<meta property='og:type' content=""> -->
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -82,7 +82,7 @@ $datamissing =  processLogin($_POST);
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                        <a class="small" href="forgot-password.php">Forgot Password?</a>
                                     </div>
                                     <div class="text-center">
                                         <a class="small" href="register.php">Create an Account!</a>
