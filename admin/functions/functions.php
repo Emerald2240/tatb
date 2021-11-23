@@ -750,6 +750,10 @@ function loadBlogPosts($newest = null, $pag = null)
 
 function loadBlogPostTimeDetails($origDate = null)
 {
+
+    //$timezone = DateTimeZone('{Africa}/{Lagos}');
+    date_default_timezone_set('Africa/Lagos');
+
     if ($origDate == null) {
         echo "Published recently";
     } else {

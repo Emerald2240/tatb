@@ -25,14 +25,14 @@ if (isset($_SESSION['editpost'])) {
 <html lang="en">
 
 <head>
-<title>CREATE NEW POST TATB</title>
-	<meta name="description" content="<?= 'Create new post on TATB' ?>">
-	<!-- <meta property='og:title' content="TATB HOME"> -->
-	<meta property='og:url' content="https://techac.net/tatb">
-	<!-- <meta property='og:image' itemprop="image" content="https://techac.net/tatb/assets/images/mike.jpg"> -->
-	<meta property='keywords' content="Tech Acoustic, TA, TATB, Tech Blog, Tech, Science, Computers">
-	<!-- <meta property='og:locale' content="">
-	<meta property='og:type' content=""> -->	
+    <title>CREATE NEW POST TATB</title>
+    <meta name="description" content="<?= 'Create new post on TATB' ?>">
+    <!-- <meta property='og:title' content="TATB HOME"> -->
+    <meta property='og:url' content="https://techac.net/tatb">
+    <!-- <meta property='og:image' itemprop="image" content="https://techac.net/tatb/assets/images/mike.jpg"> -->
+    <meta property='keywords' content="Tech Acoustic, TA, TATB, Tech Blog, Tech, Science, Computers">
+    <!-- <meta property='og:locale' content="">
+	<meta property='og:type' content=""> -->
 
     <?php
     require_once('includes/head.php');
@@ -102,7 +102,7 @@ if (isset($_SESSION['editpost'])) {
                                     <label for="bp">Blog Post</label>
                                     <!-- <div id="editor" class="edit"></div>
         <input type="text" name="rbp" id="editor" class="invisible"> -->
-        <p>To add code to the text or change classes, just click source after your done and submit. if you undo source before submitting, the changes you make will be removed</p>
+                                    <p>To add code to the text or change classes, just click source after your done and submit. if you undo source before submitting, the changes you make will be removed</p>
                                     <textarea name="bp" id="editor">
                                         <?php if (isset($_GET['edit']) && $_GET['edit'] == 1) {
                                             adminLoadBlogPost($_GET['id']);
@@ -116,26 +116,27 @@ if (isset($_SESSION['editpost'])) {
                                         // var editor = CKEDITOR.replace('ckfinder');
                                         // CKFINDER.setupCKEDITOR(editor);
                                     </script>
+                                </div>
 
-                                    <div class="mb-5 mt-5">
-                                        <label for="bi">Blog Image</label>
-                                        <input type="file" name="bi" id="image" class="container" required>
-                                    </div>
+                                <div class="mb-5 mt-5">
+                                    <label for="bi">Blog Image</label>
+                                    <input type="file" name="bi" id="image" class="container" required>
+                                </div>
 
-                                    <div class="mb-5">
-                                        <label for="tag">Blog Post Tags(Place semicolon after each one)</label>
-                                        <input require type="text" name="tag" id="tag" class="container" <?php
-                                                                                                            if (isset($_GET['edit']) && $_GET['edit'] == 1) {
-                                                                                                                echo 'value="';
-                                                                                                                echo $_GET['tags'];
-                                                                                                                echo '"';
-                                                                                                            }
-                                                                                                            ?>>
-                                    </div>
+                                <div class="mb-5">
+                                    <label for="tag">Blog Post Tags(Place semicolon after each one)</label>
+                                    <input require type="text" name="tag" id="tag" class="container" <?php
+                                                                                                        if (isset($_GET['edit']) && $_GET['edit'] == 1) {
+                                                                                                            echo 'value="';
+                                                                                                            echo $_GET['tags'];
+                                                                                                            echo '"';
+                                                                                                        }
+                                                                                                        ?>>
+                                </div>
 
-                                    <!-- <a href="" onclick="showMissingItems()" class="btn btn-danger btn-user btn-block invisible">Process</a> -->
-                                    <button type="submit" class="btn btn-primary btn-user btn-block" id="submit" name="submit">Submit</button>
-                                    <!-- <input type="submit" name="Submit" class="btn btn-primary btn-user btn-block"> -->
+                                <!-- <a href="" onclick="showMissingItems()" class="btn btn-danger btn-user btn-block invisible">Process</a> -->
+                                <button type="submit" class="btn btn-primary btn-user btn-block" id="submit" name="submit">Submit</button>
+                                <!-- <input type="submit" name="Submit" class="btn btn-primary btn-user btn-block"> -->
                             </form>
 
                         </div>
