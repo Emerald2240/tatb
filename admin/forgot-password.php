@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
             $mail->Username = 'techctwn@techac.net';
 
             //SMTP username 
-            $mail->Password = 'Emerald2240';
+            $mail->Password = '';
 
             //SMTP password 
             //$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
