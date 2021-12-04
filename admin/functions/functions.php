@@ -44,7 +44,7 @@ function processNewPost($formstream, $editId = null)
         if (empty($bp)) {
             $datamissing['bp'] = "Missing blog post";
         } else {
-            $bp; // = htmlentities($bp, ENT_QUOTES);
+            $bp = htmlentities($bp, ENT_QUOTES);
         }
 
         if (empty($tag)) {
@@ -169,9 +169,9 @@ function showDataMissing($datamissing, $showSuccess = null)
     }
 }
 
+    //This loads up all the posts available and fills their links/options with the required items so they can be worked on and used to get more data on that particular post
 function loadPosts()
 {
-    //This loads up all the posts available and fills their links/options with the required items so they can be worked on and used to get more data on that particular course
     global $db;
     // $user = $_SESSION['username'];
     // if (!empty($user)) {
@@ -715,7 +715,7 @@ function loadBlogPosts($newest = null, $pag = null)
             echo '<div class="intro">';
 
             //blog post intro
-            $string2 = substr($row['blog_post'], 0, 225) . '...';
+            $string2 = substr(html_entity_decode($row['blog_post']), 0, 400) . '...';
             //echo $row['blog_post'];
             echo $string2;
             // echo 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies...';
@@ -856,7 +856,7 @@ function loadBlogPost($id)
             //echo '</figure>';
 
             //blog posts===========================
-            echo $row['blog_post'];
+            echo html_entity_decode($row['blog_post']);
         }
     }
 }
