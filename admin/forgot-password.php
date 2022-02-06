@@ -32,34 +32,22 @@ if (isset($_POST['submit'])) {
         //Create an instance; passing `true` enables exceptions 
         $mail = new PHPMailer(true);
         try {
-            //Server settings 
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
-
-            //Enable verbose debug output 
             $mail->isSMTP();
-
-            //Send using SMTP 
-            $mail->Host = 'smtp.gmail.com';
-
-            //Set the SMTP server to send through 
-            $mail->SMTPAuth = true;
-
-            //Enable SMTP authentication
-            $mail->Username = 'techctwn@techac.net';
-
-            //SMTP username 
-            $mail->Password = '';
-
-            //SMTP password 
-            //$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-
-            //Enable implicit TLS encryption 
+            $mail->Host = 'www.techac.net';
+            $mail->SMTPAuth = TRUE;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Username = 'michaelson@techac.net';
+            $mail->Password = 'Emerald22401507';
             $mail->Port = 465;
+
+            /* Enable SMTP debug output. */
+            $mail->SMTPDebug = 4;
+
 
             //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
             //Recipients 
-            $mail->setFrom('orjimichael4886@gmail.com', 'Tech Acoustic');
-            $mail->addAddress('orjimichael4886@gmail.com', 'Tech Acoustic');
+            $mail->setFrom('michaelson@techac.net', 'Orji Michael Chukwuebuka');
+            $mail->addAddress($_POST['email'], 'Tech Acoustic');
 
             //Add a recipient 
             //$mail->addAddress('ellen@example.com');
@@ -80,18 +68,18 @@ if (isset($_POST['submit'])) {
 
             //Set email format to HTML 
             $code = uniqid(true);
-            addNewResetData($code, $_POST['email']);
+            //addNewResetData($code, $_POST['email']);
 
-            $url = "http://" . $_SERVER["HTTP_HOST"] . dirname($_SERVER["PHP_SELF"] . "/setnewpass.php?code=" . $code);
-            $mail->Subject = 'Here is the subject';
+            $url = "https://techac.net/tatb/admin/setnewpass.php?code=" . $code;
+            $mail->Subject = 'Password Reset Request';
             $mail->Body = '
     <h1>You requested a password reset link</h1>
     Click <a href="' . $url . '">this link to do so</a>';
-            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail->AltBody = 'copy this link into your browser to reset your password: ' . $url;
             $mail->send();
 
             addNewResetData($code, $_POST['email']);
-            $message = '<p class="text-success">Reset link has been sent to your email address.</p>';
+            $message = '<p class="text-success">Reset link has been sent to your email address. go check it out</p>';
         } catch (Exception $e) {
             $message = '<p class="text-danger">Reset link could not be sent, an error has occured</p>';
 

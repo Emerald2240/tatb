@@ -48,10 +48,11 @@ $datamissing = ResetPassword($_POST);
                                 <?php if (isset($_GET['code'])) {
                                     if (!validateResetCode($_GET['code'])) {
                                         echo '<div class="p-5">
-                                        <h1>Error!!!</h1>
+                                        <h1>Error!!! Invalid Reset Code</h1>
                                         </div>';
                                     } else { ?>
                                         <div class="p-5">
+
                                             <div class="text-center">
                                                 <h1 class="h4 text-gray-900 mb-2">Reset Your Passoword</h1>
                                                 <p class="mb-4">Enter your new password</p>
@@ -64,6 +65,9 @@ $datamissing = ResetPassword($_POST);
                                                 <div class="form-group">
                                                     <input required type="password" name="pass2" class="form-control form-control-user" placeholder="Confirm New Password">
                                                 </div>
+                                                <?php
+                                                showDataMissing($datamissing);
+                                                ?>
                                                 <button required type="submit" class="btn btn-primary btn-user btn-block" id="submit" name="submit">Reset Password</button>
                                             </form>
                                             <hr>
@@ -71,13 +75,13 @@ $datamissing = ResetPassword($_POST);
                                         <a class="small" href="register.html">Create an Account!</a>
                                     </div> -->
                                             <div class="text-center">
-                                                <a class="small" href="login.html">Already have an account? Login!</a>
+                                                <a class="small" href="login.php">Already have an account? Login!</a>
                                             </div>
                                         </div>
                                 <?php }
                                 } else {
                                     echo '<div>
-                                        <h1>Error!!!</h1>
+                                        <h1>Error!!! reset code not found</h1>
                                         </div>';
                                 } ?>
                             </div>

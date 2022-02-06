@@ -77,23 +77,24 @@ require_once "admin/functions/functions.php";
 					</script>
 				</div>
 
-				
-				<?php if (!isset($_POST['submit'])) { //if the search buttonb has been clicked, dont show this nav ?>
-				<nav class="blog-nav nav nav-justified my-5">
-					<?php
-					if ($_GET['pag'] > 10) {
-					?>
-						<a class="nav-link-prev nav-item nav-link rounded-left" href="blog-list.php?pag=<?= $_GET['pag'] - 10 ?>">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
-					<?php } ?>
 
-					<?php
-					if (loadPostCount() > $_GET['pag']) {
-					?>
+				<?php if (!isset($_POST['submit'])) { //if the search buttonb has been clicked, dont show this nav 
+				?>
+					<nav class="blog-nav nav nav-justified my-5">
+						<?php
+						if ($_GET['pag'] > 10) {
+						?>
+							<a class="nav-link-prev nav-item nav-link rounded-left" href="blog-list.php?pag=<?= $_GET['pag'] - 10 ?>">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+						<?php } ?>
 
-						<a class="nav-link-next nav-item nav-link rounded-right" href="blog-list.php?pag=<?= $_GET['pag'] + 10 ?>">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
-					<?php } ?>
-				</nav>
-				<?php }?>
+						<?php
+						if (loadPostCount() > $_GET['pag']) {
+						?>
+
+							<a class="nav-link-next nav-item nav-link rounded-right" href="blog-list.php?pag=<?= $_GET['pag'] + 10 ?>">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+						<?php } ?>
+					</nav>
+				<?php } ?>
 
 				<div>
 					<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8230887621285431" crossorigin="anonymous"></script>

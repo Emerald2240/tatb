@@ -132,7 +132,7 @@ function AddPost($title, $bp, $tag, $imagename, $minread)
 
         echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
     }
-    mysqli_close($db);
+    //mysqli_close($db);
 }
 
 function EditPost($id, $title, $bp, $tag, $imagename, $minread)
@@ -149,7 +149,7 @@ function EditPost($id, $title, $bp, $tag, $imagename, $minread)
     } else {
         echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
     }
-    mysqli_close($db);
+    //mysqli_close($db);
 }
 
 //shows all the entries in the datamissing array or just a success message if everything went well
@@ -169,7 +169,7 @@ function showDataMissing($datamissing, $showSuccess = null)
     }
 }
 
-    //This loads up all the posts available and fills their links/options with the required items so they can be worked on and used to get more data on that particular post
+//This loads up all the posts available and fills their links/options with the required items so they can be worked on and used to get more data on that particular post
 function loadPosts()
 {
     global $db;
@@ -311,7 +311,7 @@ function deletePost($id)
     } else {
         echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
     }
-    mysqli_close($db);
+    //mysqli_close($db);
 }
 
 //checks if the input mail exists in the admins database. if it exists return false, if not return true
@@ -462,7 +462,7 @@ function addRegistered($fname, $lname, $em, $pass, $facebook, $twitter, $linkedi
     } else {
         //echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
     }
-    mysqli_close($db);
+    //mysqli_close($db);
 }
 
 function processLogin($formstream)
@@ -566,6 +566,7 @@ function addNewResetData($code, $email)
     //This simply adds the filtered and cleansed data that is edited into the database 
     global $db;
     $sql = "INSERT INTO resetpassword(  	email, 	code 	) VALUES ('$email', '$code')";
+    $_SESSION['resetMail'] = strtoupper($email);
     //$sql = "INSERT INTO posts(title, 	blog_post, 	imagename,	minread, 	tags 	) VALUES ('$title', '$bp', '$imagename', '$minread', '$tag')";
 
     if (mysqli_query($db, $sql)) {
@@ -573,7 +574,7 @@ function addNewResetData($code, $email)
     } else {
         //echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
     }
-    mysqli_close($db);
+    //mysqli_close($db);
 }
 
 function ResetPassword($formstream)
@@ -603,7 +604,13 @@ function ResetPassword($formstream)
         }
 
         if (empty($datamissing)) {
-            setNewPassword($_SESSION['resetMail'], $password);
+            if (isset($_SESSION['resetMail'])) {
+                setNewPassword($_SESSION['resetMail'], $password);
+                //deleteResetPassword($_SESSION['resetMail']);
+            } else {
+                $datamissing['Reset Email'] = "Email not found";
+                return $datamissing;
+            }
             //addRegistered($firstname, $lastname, $email, $password, $facebook, $twitter, $linkedin, $instagram);
         } else {
             return $datamissing;
@@ -613,22 +620,36 @@ function ResetPassword($formstream)
 
 function setNewPassword($email, $password)
 {
+    $email = strtoupper($email);
     //This simply adds the filtered and cleansed data that is edited into the database 
     global $db;
-    $sql = "UPDATE `admins` SET `password` = '$password' WHERE `admins`.`email` = $email";
-    //$sql = "INSERT INTO posts(title, 	blog_post, 	imagename,	minread, 	tags 	) VALUES ('$title', '$bp', '$imagename', '$minread', '$tag')";
-    $sql2 = "DELETE FROM `resetpassword`  WHERE resetpassword.email = '$email' ";
+    $sql = "UPDATE `admins` SET `password` = '$password' WHERE `admins`.`email` = '$email'";
 
     if (mysqli_query($db, $sql)) {
-        if (mysqli_query($db, $sql2)) {
-            gotoPage("login.php");
-        }
+        echo 'password updated';
+        //gotoPage("login.php");
     } else {
-        //echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+        echo 'admins password not updated';
+        echo  "<br>" . "Error: " . mysqli_error($db);
     }
-    mysqli_close($db);
+    //mysqli_close($db);
 }
 
+function deleteResetPassword($email)
+{
+    global $db;
+    $email = strtoupper($email);
+    $sql2 = "DELETE FROM `resetpassword` WHERE `resetpassword`.`email` = '$email'";
+
+    if (mysqli_query($db, $sql2)) {
+        gotoPage("login.php");
+    } else {
+        echo '<br>';
+        echo 'reset password not deleted';
+        echo  "<br>" . "Error: " . mysqli_error($db);
+    }
+    //mysqli_close($db);
+}
 
 //////////////////////////////////////////////FRONTEND//////////////////////////////////////////////
 

@@ -9,9 +9,9 @@ addCount($_GET['id']);
 
 <head>
 	<title><?= strtoupper(str_replace("-", " ", $_GET['title'])) ?></title>
-	<meta name="description" content="<?= 'Tech Acoustic Tech Blog' ?>">
+	<meta name="description" content="<?= 'TATB Blog Post' ?>">
 	<meta property='og:url' content="<?= 'https://techac.net/tatb/post.php' . '?id=' . $_GET['id'] . '&title=' . $_GET['title'] ?>;">
-	<meta property='og:image' itemprop="image" content="https://techac.net/tatb/blog_image/<?= getPostImage($_GET['id']) ?>">
+	<meta property='og:image' content="https://techac.net/tatb/blog_images/<?= getPostImage($_GET['id']) ?>">
 	<meta property='keywords' content="<?= loadKeywords($_GET['id']) ?>">
 	<!-- <meta property='og:locale' content="">
 	<meta property='og:type' content=""> -->
@@ -124,17 +124,13 @@ addCount($_GET['id']);
 				</div>
 				<!--//blog-comments-section-->
 
-				<div><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8230887621285431"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-8230887621285431"
-     data-ad-slot="5837351353"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></div>
+				<div>
+					<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8230887621285431" crossorigin="anonymous"></script>
+					<ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-8230887621285431" data-ad-slot="5837351353"></ins>
+					<script>
+						(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+				</div>
 			</div>
 			<!--//container-->
 		</article>

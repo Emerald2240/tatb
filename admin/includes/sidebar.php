@@ -31,10 +31,10 @@
         <a class="collapse-item" href="newpost.php">New Post</a>
         <a class="collapse-item" href="posts.php">Posts</a>
 
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.php">Login</a>
-            <a class="collapse-item" href="register.php">Register</a>
-            <a class="collapse-item" href="forgot-password.php">Forgot Password</a>
+            <!-- <h6 class="collapse-header">Login Screens:</h6> -->
+            <!-- <a class="collapse-item" href="login.php">Login</a> -->
+            <!-- <a class="collapse-item" href="register.php">Register</a> -->
+            <!-- <a class="collapse-item" href="forgot-password.php">Forgot Password</a> -->
             
           
         </div>
