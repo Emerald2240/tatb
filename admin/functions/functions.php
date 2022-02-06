@@ -606,7 +606,7 @@ function ResetPassword($formstream)
         if (empty($datamissing)) {
             if (isset($_SESSION['resetMail'])) {
                 setNewPassword($_SESSION['resetMail'], $password);
-                //deleteResetPassword($_SESSION['resetMail']);
+                deleteResetPassword($_SESSION['resetMail']);
             } else {
                 $datamissing['Reset Email'] = "Email not found";
                 return $datamissing;
